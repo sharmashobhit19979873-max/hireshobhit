@@ -12,6 +12,43 @@
   gtag('js', new Date());
   gtag('config', 'G-P8R3GQ5QZX');
 </script>
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Hire Shobhit — Platonic Companion for Hire",
+  "url": "https://hireshobhit.in",
+  "image": "https://hireshobhit.in/shobhit.jpg",
+  "description": "Hire Shobhit as a platonic companion in Ghaziabad, Noida, Delhi & NCR. Rent a caring brother, supportive boyfriend or best friend for weddings, events & outings. ID verified, from ₹399/hr.",
+  "telephone": "+917888452012",
+  "priceRange": "₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ghaziabad",
+    "addressRegion": "Uttar Pradesh",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 28.6692,
+    "longitude": 77.4538
+  },
+  "areaServed": [
+    "Ghaziabad", "Noida", "Greater Noida", "Delhi", "NCR",
+    "Indirapuram", "Vaishali", "Kaushambi", "Vasundhara",
+    "Crossings Republik", "Raj Nagar Extension"
+  ],
+  "openingHours": ["Mo-Fr 12:00-20:00", "Sa-Su 00:00-23:59"],
+  "sameAs": ["https://instagram.com/show_abit"],
+  "founder": {
+    "@type": "Person",
+    "name": "Shobhit Sharma",
+    "jobTitle": "Platonic Companion",
+    "telephone": "+917888452012"
+  }
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>"/>
 <meta name="description" content="Hire Shobhit as a platonic companion in Ghaziabad, Noida, Delhi & NCR. Rent a caring brother, supportive boyfriend or best friend for weddings, events & outings. ID verified, from ₹399/hr."/>
 <meta name="keywords" content="rent a companion Ghaziabad, hire a friend Noida, companion for hire Delhi, rent a boyfriend NCR, platonic companion Delhi weddings, hire a brother Ghaziabad, companion for events Noida, rent a friend Indirapuram, male companion Delhi, platonic friend for hire NCR, companion service Greater Noida, rent a partner Vaishali, hire companion Crossings Republik, friend for hire East Delhi"/>
@@ -710,10 +747,72 @@
     display: inline-block; transition: all 0.2s;
   }
   .blog-cta-box a:hover { transform: translateY(-2px); }
+
+  footer {
     background: #2A1A10; color: rgba(255,255,255,0.4);
     text-align: center; padding: 20px 32px; font-size: 0.8rem;
   }
   footer span { color: var(--warm); }
+
+  /* ── REVIEW FORM ── */
+  .review-form-wrap {
+    background: #fff; border-radius: 24px; padding: 36px 32px;
+    border: 1.5px solid var(--blush); margin: 32px 0;
+    box-shadow: 0 8px 28px var(--shadow);
+  }
+  .review-form-wrap h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    color: var(--brown); margin-bottom: 6px;
+  }
+  .review-form-wrap .sub { font-size: 0.88rem; color: var(--soft); margin-bottom: 24px; }
+  .star-picker { display: flex; gap: 8px; margin-bottom: 20px; }
+  .star-picker span {
+    font-size: 2rem; cursor: pointer; transition: transform 0.15s;
+    filter: grayscale(1) opacity(0.4);
+  }
+  .star-picker span.active,
+  .star-picker span.hover { filter: none; transform: scale(1.15); }
+  .rf-group { margin-bottom: 16px; }
+  .rf-group label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--brown); margin-bottom: 6px; }
+  .rf-group input, .rf-group textarea, .rf-group select {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid var(--blush); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    color: var(--brown); background: var(--cream);
+    outline: none; transition: border-color 0.2s;
+  }
+  .rf-group input:focus, .rf-group textarea:focus { border-color: var(--warm); background: #fff; }
+  .rf-group textarea { resize: vertical; min-height: 90px; }
+  .rf-submit {
+    width: 100%; padding: 14px; background: var(--warm); color: #fff;
+    border: none; border-radius: 14px; font-size: 0.95rem; font-weight: 700;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: all 0.25s; box-shadow: 0 6px 20px rgba(255,123,84,0.3);
+    margin-top: 4px;
+  }
+  .rf-submit:hover { background: #e8663e; transform: translateY(-2px); }
+  .rf-submit:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+  .rf-msg {
+    display: none; margin-top: 14px; padding: 12px 16px;
+    border-radius: 12px; font-size: 0.88rem; font-weight: 600; text-align: center;
+  }
+  .rf-msg.success { background: #D4EDDA; color: #155724; display: block; }
+  .rf-msg.error   { background: #F8D7DA; color: #721C24; display: block; }
+
+  /* Published reviews */
+  .published-reviews { margin-top: 40px; }
+  .published-reviews h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    color: var(--brown); margin-bottom: 20px;
+  }
+  .no-reviews-yet {
+    text-align: center; padding: 40px 24px;
+    background: var(--card); border-radius: 20px;
+    border: 2px dashed var(--blush);
+  }
+  .no-reviews-yet .emoji { font-size: 2.8rem; margin-bottom: 12px; }
+  .no-reviews-yet h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px; }
+  .no-reviews-yet p { color: var(--soft); font-size: 0.9rem; max-width: 380px; margin: 0 auto; line-height: 1.7; }
 
   /* MODAL */
   .modal-overlay {
@@ -793,7 +892,6 @@
   "areaServed": ["Ghaziabad","Noida","Greater Noida","Indirapuram","Vaishali","Crossings Republik","Kaushambi","East Delhi","Laxmi Nagar","Anand Vihar","Shahdara","Connaught Place","South Delhi","West Delhi","Delhi NCR"],
   "openingHours": ["Mo-Fr 12:00-20:00","Sa-Su 00:00-23:59"],
   "sameAs": ["https://instagram.com/show_abit"]
-  "sameAs": ["https://instagram.com/show_abit"]
 }
 </script>
 </head>
@@ -833,10 +931,10 @@
   <!-- Verified Strip -->
   <div class="verified-strip">
     <span class="v-item">🪪 Government ID Verified</span>
-    <span class="v-item">⭐ First Bookings Open</span>
-    <span class="v-item">🤝 Limited Slots Available</span>
+    <span class="v-item">⭐ First Bookings Open — Limited Slots</span>
     <span class="v-item">✅ 100% Platonic</span>
-    <span class="v-item">📲 WhatsApp Business</span>
+    <span class="v-item">📲 Replies in 10 mins on WhatsApp</span>
+    <span class="v-item">🎁 Use code FIRST100 for ₹100 off</span>
   </div>
 
   <!-- Hero -->
@@ -844,12 +942,16 @@
     <div class="hero-bg"></div>
     <div class="hero-blob"></div>
     <div class="hero-content">
-      <div class="hero-badge"><span class="online-dot"></span> Available in Ghaziabad, Noida & Delhi NCR</div>
-      <h1>Your <em>personal companion</em> for every occasion in NCR</h1>
-      <p>Need a caring brother for a family function in Noida, a supportive boyfriend for a Delhi wedding, or just a genuine friend for the day in Ghaziabad? Hire Shobhit — safe, verified & 100% platonic.</p>
+      <div class="hero-badge"><span class="online-dot"></span> Available now · Ghaziabad, Noida & Delhi NCR</div>
+      <h1>Yes, I charge money<br>to be your <em>friend.</em><br>And I'm okay with that.</h1>
+      <p>Loneliness in big cities is real. Millions of people in Delhi, Noida & Ghaziabad live kilometres apart and still feel completely alone. I'm Shobhit — a real, verified person you can hire to show up. For a wedding, an outing, a doctor's visit, or just chai and conversation. No judgment. Full confidentiality.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="switchTab('book')">📅 Book a Session</button>
-        <button class="btn-outline" onclick="switchTab('services')">See Services & Pricing</button>
+        <a href="https://wa.me/917888452012?text=Hi Shobhit! I saw your post and I'd like to know more 👋" target="_blank" class="btn-primary">💬 WhatsApp Me — It's Free to Ask</a>
+        <button class="btn-outline" onclick="switchTab('services')">See How It Works</button>
+      </div>
+      <div style="margin-top:20px; background:rgba(255,123,84,0.08); border:1.5px solid var(--blush); border-radius:14px; padding:14px 18px; display:inline-flex; align-items:center; gap:10px;">
+        <span style="font-size:1.2rem;">🎁</span>
+        <span style="font-size:0.87rem; color:var(--brown); font-weight:600;">First booking? Use code <strong style="color:var(--warm);">FIRST100</strong> for ₹100 off your session</span>
       </div>
       <div class="hero-stats">
         <div class="stat"><h3>NCR</h3><p>Ghaziabad, Noida, Delhi</p></div>
@@ -1243,16 +1345,64 @@
       <p class="section-sub">This service is newly launched. Reviews will appear here as real clients share their experiences.</p>
     </div>
 
-    <div class="review-cta">
-      <div style="font-size:1.6rem;margin-bottom:6px;">🌱 Be the first to review!</div>
-      <p>Had a session with me? Your honest review helps others feel safe & confident booking. Takes just 30 seconds!</p>
-      <a href="https://wa.me/917888452012" target="_blank">💬 WhatsApp me to book a session</a>
+    <!-- REVIEW FORM -->
+    <div class="review-form-wrap">
+      <h3>⭐ Leave a Review</h3>
+      <p class="sub">Had a session? Your honest feedback helps others feel confident booking. Takes 30 seconds!</p>
+
+      <div class="rf-group">
+        <label>Your Rating</label>
+        <div class="star-picker" id="starPicker">
+          <span data-val="1" onclick="setRating(1)">★</span>
+          <span data-val="2" onclick="setRating(2)">★</span>
+          <span data-val="3" onclick="setRating(3)">★</span>
+          <span data-val="4" onclick="setRating(4)">★</span>
+          <span data-val="5" onclick="setRating(5)">★</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="rf-group">
+          <label>Your Name (first name is fine)</label>
+          <input type="text" id="rv-name" placeholder="e.g. Priya"/>
+        </div>
+        <div class="rf-group">
+          <label>Service You Booked</label>
+          <select id="rv-service">
+            <option value="">Select a service…</option>
+            <option>Caring Brother</option>
+            <option>Supportive Boyfriend</option>
+            <option>Brother for a Boy</option>
+            <option>Best Friend</option>
+            <option>Movie Companion</option>
+            <option>Mall & Shopping Partner</option>
+            <option>Event Plus-One</option>
+            <option>Café & Food Outing</option>
+            <option>City Explorer Tour</option>
+            <option>Fitness & Walk Partner</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rf-group">
+        <label>Your Review</label>
+        <textarea id="rv-text" placeholder="Tell others about your experience — what it was like, how you felt, what stood out…"></textarea>
+      </div>
+
+      <button class="rf-submit" id="rv-btn" onclick="submitReview()">✨ Submit My Review</button>
+      <div class="rf-msg" id="rv-msg"></div>
     </div>
 
-    <div style="text-align:center; padding: 48px 24px; background: var(--card); border-radius: 20px; margin: 24px 0; border: 2px dashed var(--blush);">
-      <div style="font-size: 3rem; margin-bottom: 16px;">🙏</div>
-      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px; color: var(--brown);">No reviews yet — and that's honest.</h3>
-      <p style="color: var(--soft); font-size: 0.95rem; max-width: 420px; margin: 0 auto; line-height: 1.7;">This is a new service. I'd rather start with zero real reviews than fake ones. Book a session, have a genuine experience, and leave your honest feedback. That's how trust is built. 🌱</p>
+    <!-- PUBLISHED REVIEWS -->
+    <div class="published-reviews">
+      <h3>💬 What clients are saying</h3>
+      <div id="reviews-container">
+        <div class="no-reviews-yet">
+          <div class="emoji">🌱</div>
+          <h4>No reviews yet — and that's honest.</h4>
+          <p>This service just launched. Be the first to share your experience after your session. Real reviews only.</p>
+        </div>
+      </div>
     </div>
 
     <div class="section-divider"></div>
@@ -1793,6 +1943,97 @@
     renderCalendar();
   }
 
+  // ── REVIEW FORM ──
+  // 👇 STEP 1: Paste your Google Apps Script Web App URL here after setup
+  const SHEET_WEBHOOK = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+  // 👇 STEP 2: Paste your published reviews JSON URL here (same script, ?action=get)
+  const PUBLISHED_REVIEWS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE?action=get';
+
+  let selectedRating = 0;
+
+  function setRating(val) {
+    selectedRating = val;
+    document.querySelectorAll('#starPicker span').forEach((s, i) => {
+      s.classList.toggle('active', i < val);
+    });
+  }
+
+  document.querySelectorAll('#starPicker span').forEach((s, i) => {
+    s.addEventListener('mouseenter', () => {
+      document.querySelectorAll('#starPicker span').forEach((x, j) => {
+        x.classList.toggle('hover', j <= i);
+      });
+    });
+    s.addEventListener('mouseleave', () => {
+      document.querySelectorAll('#starPicker span').forEach(x => x.classList.remove('hover'));
+    });
+  });
+
+  async function submitReview() {
+    const name    = document.getElementById('rv-name').value.trim();
+    const service = document.getElementById('rv-service').value;
+    const text    = document.getElementById('rv-text').value.trim();
+    const msg     = document.getElementById('rv-msg');
+    const btn     = document.getElementById('rv-btn');
+
+    msg.className = 'rf-msg'; msg.style.display = 'none';
+
+    if (!selectedRating) { msg.textContent = '⭐ Please select a star rating first!'; msg.className = 'rf-msg error'; return; }
+    if (!name)           { msg.textContent = '👤 Please enter your name.'; msg.className = 'rf-msg error'; return; }
+    if (!service)        { msg.textContent = '🎭 Please select the service you booked.'; msg.className = 'rf-msg error'; return; }
+    if (text.length < 20){ msg.textContent = '✍️ Please write at least 20 characters.'; msg.className = 'rf-msg error'; return; }
+
+    btn.disabled = true; btn.textContent = 'Submitting…';
+
+    try {
+      await fetch(SHEET_WEBHOOK, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, service, rating: selectedRating, review: text, timestamp: new Date().toISOString() })
+      });
+      msg.textContent = '🙏 Thank you! Your review has been submitted and will appear here once approved.';
+      msg.className = 'rf-msg success';
+      document.getElementById('rv-name').value = '';
+      document.getElementById('rv-service').value = '';
+      document.getElementById('rv-text').value = '';
+      selectedRating = 0;
+      document.querySelectorAll('#starPicker span').forEach(s => s.classList.remove('active'));
+    } catch(e) {
+      msg.textContent = '❌ Something went wrong. Please try WhatsApp directly.';
+      msg.className = 'rf-msg error';
+    }
+    btn.textContent = '✨ Submit My Review'; btn.disabled = false;
+  }
+
+  async function loadPublishedReviews() {
+    if (PUBLISHED_REVIEWS_URL.includes('YOUR_GOOGLE')) return;
+    try {
+      const res = await fetch(PUBLISHED_REVIEWS_URL);
+      const reviews = await res.json();
+      if (!reviews || reviews.length === 0) return;
+      const container = document.getElementById('reviews-container');
+      container.innerHTML = '';
+      const grid = document.createElement('div');
+      grid.className = 'reviews-grid';
+      reviews.forEach(r => {
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+          <div class="review-header">
+            <div class="reviewer-avatar">${r.name.charAt(0).toUpperCase()}</div>
+            <div class="reviewer-info"><h4>${r.name}</h4><p>${r.service}</p></div>
+          </div>
+          <div class="review-stars">${stars}</div>
+          <p class="review-text">"${r.review}"</p>
+          <span class="review-role">${r.service}</span>`;
+        grid.appendChild(card);
+      });
+      container.appendChild(grid);
+    } catch(e) { /* silently fail */ }
+  }
+
+  loadPublishedReviews();
   renderCalendar();
 </script>
 </body>
