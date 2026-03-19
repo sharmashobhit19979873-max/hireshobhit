@@ -870,6 +870,87 @@
     .btn-primary, .btn-outline { width: 100%; text-align: center; }
     .hero-btns { flex-direction: column; }
   }
+
+  /* ── FLOATING WHATSAPP BUTTON ── */
+  .float-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    display: flex; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 14px 22px; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+    transition: all 0.3s; animation: floatWA 3s ease-in-out infinite;
+  }
+  .float-wa:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 36px rgba(37,211,102,0.6); }
+  .float-wa .wa-icon { font-size: 1.3rem; }
+  .float-wa .wa-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .float-wa .wa-text small { font-size: 0.72rem; opacity: 0.85; font-weight: 400; }
+  @keyframes floatWA {
+    0%,100% { box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 12px 40px rgba(37,211,102,0.7); }
+  }
+  @media (max-width: 768px) {
+    .float-wa .wa-text { display: none; }
+    .float-wa { padding: 16px; border-radius: 50%; bottom: 20px; right: 20px; }
+    .float-wa .wa-icon { font-size: 1.6rem; }
+  }
+
+  /* ── ENQUIRY FORM ── */
+  .enquiry-section {
+    background: linear-gradient(135deg, #fff 0%, var(--cream) 100%);
+    border-radius: 28px; padding: 52px 44px;
+    border: 1.5px solid var(--blush);
+    box-shadow: 0 12px 40px var(--shadow);
+    margin: 48px 0;
+  }
+  .enquiry-section .section-label { margin-bottom: 8px; }
+  .enquiry-section .section-title { margin-bottom: 8px; }
+  .enquiry-section .section-sub { margin-bottom: 32px; }
+  .enquiry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .enquiry-grid .full { grid-column: 1 / -1; }
+  .eq-group { display: flex; flex-direction: column; gap: 7px; }
+  .eq-group label { font-size: 0.84rem; font-weight: 600; color: var(--brown); }
+  .eq-group input, .eq-group select, .eq-group textarea {
+    padding: 12px 15px; border: 1.5px solid var(--blush); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    color: var(--brown); background: #fff; outline: none; transition: border-color 0.2s;
+  }
+  .eq-group input:focus, .eq-group select:focus, .eq-group textarea:focus { border-color: var(--warm); }
+  .eq-group textarea { resize: vertical; min-height: 90px; }
+  .eq-or-divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 28px 0; color: var(--soft); font-size: 0.85rem; font-weight: 600;
+  }
+  .eq-or-divider::before, .eq-or-divider::after {
+    content: ''; flex: 1; height: 1.5px; background: var(--blush);
+  }
+  .eq-wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #25D366; color: #fff; width: 100%;
+    padding: 15px; border-radius: 14px; font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: all 0.25s; box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+  }
+  .eq-wa-btn:hover { background: #1fba59; transform: translateY(-2px); }
+  .eq-submit {
+    width: 100%; padding: 15px; background: var(--warm); color: #fff;
+    border: none; border-radius: 14px; font-size: 1rem; font-weight: 700;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: all 0.25s; box-shadow: 0 6px 20px rgba(255,123,84,0.3);
+    margin-top: 4px;
+  }
+  .eq-submit:hover { background: #e8663e; transform: translateY(-2px); }
+  .eq-msg {
+    display: none; margin-top: 14px; padding: 12px 16px;
+    border-radius: 12px; font-size: 0.88rem; font-weight: 600; text-align: center;
+  }
+  .eq-msg.success { background: #D4EDDA; color: #155724; display: block; }
+  .eq-msg.error   { background: #F8D7DA; color: #721C24; display: block; }
+  @media (max-width: 768px) {
+    .enquiry-section { padding: 32px 20px; }
+    .enquiry-grid { grid-template-columns: 1fr; }
+    .enquiry-grid .full { grid-column: 1; }
+  }
 </style>
 <!-- Structured Data: Local Business SEO -->
 <script type="application/ld+json">
@@ -1047,6 +1128,58 @@
 
     <div style="text-align:center; margin-top:40px;">
       <a href="https://wa.me/917888452012" target="_blank" style="display:inline-block; background:var(--warm); color:#fff; padding:15px 36px; border-radius:50px; font-weight:700; font-size:1rem; text-decoration:none; box-shadow:0 6px 20px rgba(255,123,84,0.35);">💬 Start on WhatsApp — it's free to ask</a>
+    </div>
+  </section>
+
+  <!-- ENQUIRY FORM -->
+  <section style="max-width:1100px; margin:0 auto; padding:0 32px 48px;">
+    <div class="enquiry-section" id="enquiry">
+      <div class="section-label">Quick Enquiry</div>
+      <h2 class="section-title">Tell me about your occasion</h2>
+      <p class="section-sub">Fill in the details below and I will reach out on WhatsApp within 10 minutes. Or just message me directly!</p>
+      <div class="enquiry-grid">
+        <div class="eq-group">
+          <label>Your Name *</label>
+          <input type="text" id="eq-name" placeholder="e.g. Priya Sharma" />
+        </div>
+        <div class="eq-group">
+          <label>Phone / WhatsApp *</label>
+          <input type="tel" id="eq-phone" placeholder="e.g. 9876543210" />
+        </div>
+        <div class="eq-group">
+          <label>Occasion Type *</label>
+          <select id="eq-occasion">
+            <option value="">Select occasion</option>
+            <option>Wedding / Family Function</option>
+            <option>Cafe / Restaurant Outing</option>
+            <option>Hospital / Doctor Visit</option>
+            <option>Office Party / Event</option>
+            <option>City Exploration / Outing</option>
+            <option>Virtual Companion (Online)</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="eq-group">
+          <label>Preferred Date</label>
+          <input type="date" id="eq-date" />
+        </div>
+        <div class="eq-group">
+          <label>Your Location (Area)</label>
+          <input type="text" id="eq-location" placeholder="e.g. Indirapuram, Noida Sec 18" />
+        </div>
+        <div class="eq-group full">
+          <label>Anything else you would like to share?</label>
+          <textarea id="eq-message" placeholder="Tell me a bit about what you are looking for - no pressure, just a friendly chat!"></textarea>
+        </div>
+        <div class="full">
+          <button class="eq-submit" id="eq-btn" onclick="submitEnquiry()">Send Enquiry via WhatsApp</button>
+          <div class="eq-msg" id="eq-msg"></div>
+        </div>
+      </div>
+      <div class="eq-or-divider">or reach out directly</div>
+      <a class="eq-wa-btn" href="https://wa.me/917888452012?text=Hi%20Shobhit!%20I%20saw%20your%20website%20and%20want%20to%20know%20more" target="_blank">
+        Chat Directly on WhatsApp
+      </a>
     </div>
   </section>
 
@@ -1481,6 +1614,55 @@
       </div>
     </div>
   </div>
+
+  <!-- ENQUIRY FORM IN BOOK TAB -->
+  <div style="max-width:1100px; margin:0 auto; padding:0 32px 48px;">
+    <div class="enquiry-section">
+      <div class="section-label">Not ready to book yet?</div>
+      <h2 class="section-title">Send a quick enquiry</h2>
+      <p class="section-sub">Have questions or just want to chat first? Fill this in and I will reach out on WhatsApp!</p>
+      <div class="enquiry-grid">
+        <div class="eq-group">
+          <label>Your Name *</label>
+          <input type="text" id="eq2-name" placeholder="e.g. Rahul Verma" />
+        </div>
+        <div class="eq-group">
+          <label>Phone / WhatsApp *</label>
+          <input type="tel" id="eq2-phone" placeholder="e.g. 9876543210" />
+        </div>
+        <div class="eq-group">
+          <label>Occasion Type *</label>
+          <select id="eq2-occasion">
+            <option value="">Select occasion</option>
+            <option>Wedding / Family Function</option>
+            <option>Cafe / Restaurant Outing</option>
+            <option>Hospital / Doctor Visit</option>
+            <option>Office Party / Event</option>
+            <option>City Exploration / Outing</option>
+            <option>Virtual Companion (Online)</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="eq-group">
+          <label>Preferred Date</label>
+          <input type="date" id="eq2-date" />
+        </div>
+        <div class="eq-group full">
+          <label>Your message</label>
+          <textarea id="eq2-message" placeholder="Any questions or details you want to share?"></textarea>
+        </div>
+        <div class="full">
+          <button class="eq-submit" id="eq2-btn" onclick="submitEnquiry2()">Send Enquiry via WhatsApp</button>
+          <div class="eq-msg" id="eq2-msg"></div>
+        </div>
+      </div>
+      <div class="eq-or-divider">or just message directly</div>
+      <a class="eq-wa-btn" href="https://wa.me/917888452012?text=Hi%20Shobhit!%20I%20want%20to%20know%20more%20about%20booking" target="_blank">
+        Chat on WhatsApp Now
+      </a>
+    </div>
+  </div>
+
   <footer>
     <p>Made with <span>♥</span> by Shobhit · Rent a Partner · Ghaziabad, UP · © 2026</p>
   </footer>
@@ -2216,6 +2398,70 @@
 
   loadPublishedReviews();
   renderCalendar();
+
+  // ── ENQUIRY FORM ──
+  function submitEnquiry2() {
+    const name     = document.getElementById('eq2-name').value.trim();
+    const phone    = document.getElementById('eq2-phone').value.trim();
+    const occasion = document.getElementById('eq2-occasion').value;
+    const date     = document.getElementById('eq2-date').value;
+    const message  = document.getElementById('eq2-message').value.trim();
+    const msg      = document.getElementById('eq2-msg');
+    const btn      = document.getElementById('eq2-btn');
+    msg.className = 'eq-msg'; msg.style.display = 'none';
+    if (!name)     { msg.textContent = 'Please enter your name.'; msg.className = 'eq-msg error'; return; }
+    if (!phone)    { msg.textContent = 'Please enter your phone number.'; msg.className = 'eq-msg error'; return; }
+    if (!occasion) { msg.textContent = 'Please select an occasion type.'; msg.className = 'eq-msg error'; return; }
+    const text = `Hi Shobhit! From Book page:%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AOccasion: ${encodeURIComponent(occasion)}%0ADate: ${date ? encodeURIComponent(date) : 'Not specified'}%0AMessage: ${message ? encodeURIComponent(message) : 'None'}`;
+    window.open('https://wa.me/917888452012?text=' + text, '_blank');
+    msg.textContent = 'Opening WhatsApp with your details!';
+    msg.className = 'eq-msg success';
+    btn.textContent = 'Sent!';
+    setTimeout(() => {
+      document.getElementById('eq2-name').value = '';
+      document.getElementById('eq2-phone').value = '';
+      document.getElementById('eq2-occasion').value = '';
+      document.getElementById('eq2-date').value = '';
+      document.getElementById('eq2-message').value = '';
+      btn.textContent = 'Send Enquiry via WhatsApp';
+    }, 3000);
+  }
+
+  function submitEnquiry() {
+    const name     = document.getElementById('eq-name').value.trim();
+    const phone    = document.getElementById('eq-phone').value.trim();
+    const occasion = document.getElementById('eq-occasion').value;
+    const date     = document.getElementById('eq-date').value;
+    const location = document.getElementById('eq-location').value.trim();
+    const message  = document.getElementById('eq-message').value.trim();
+    const msg      = document.getElementById('eq-msg');
+    const btn      = document.getElementById('eq-btn');
+    msg.className = 'eq-msg'; msg.style.display = 'none';
+    if (!name)     { msg.textContent = '👤 Please enter your name.'; msg.className = 'eq-msg error'; return; }
+    if (!phone)    { msg.textContent = '📱 Please enter your phone number.'; msg.className = 'eq-msg error'; return; }
+    if (!occasion) { msg.textContent = '🎭 Please select an occasion type.'; msg.className = 'eq-msg error'; return; }
+    const text = `Hi Shobhit! 👋%0A%0ANew enquiry from hireshobhit.in:%0A%0A👤 Name: ${encodeURIComponent(name)}%0A📱 Phone: ${encodeURIComponent(phone)}%0A🎭 Occasion: ${encodeURIComponent(occasion)}%0A📅 Date: ${date ? encodeURIComponent(date) : 'Not specified'}%0A📍 Location: ${location ? encodeURIComponent(location) : 'Not specified'}%0A💬 Message: ${message ? encodeURIComponent(message) : 'None'}`;
+    window.open('https://wa.me/917888452012?text=' + text, '_blank');
+    msg.textContent = '✅ Opening WhatsApp with your details! See you there 👋';
+    msg.className = 'eq-msg success';
+    btn.textContent = '✅ Sent!';
+    setTimeout(() => {
+      document.getElementById('eq-name').value = '';
+      document.getElementById('eq-phone').value = '';
+      document.getElementById('eq-occasion').value = '';
+      document.getElementById('eq-date').value = '';
+      document.getElementById('eq-location').value = '';
+      document.getElementById('eq-message').value = '';
+      btn.textContent = '📩 Send Enquiry via WhatsApp';
+    }, 3000);
+  }
 </script>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a class="float-wa" href="https://wa.me/917888452012?text=Hi%20Shobhit!%20I%20saw%20your%20website%20and%20want%20to%20know%20more%20%F0%9F%91%8B" target="_blank">
+  <span class="wa-icon">💬</span>
+  <span class="wa-text">Chat on WhatsApp<small>Usually replies in 10 mins</small></span>
+</a>
+
 </body>
 </html>
