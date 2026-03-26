@@ -2022,10 +2022,10 @@
         <h1>Top 5 Occasions People Hire a Companion for Delhi Weddings & NCR Events</h1>
       </div>
       <div class="blog-post-content">
-        <p>Over 200 sessions across Ghaziabad, Noida, Greater Noida, and East Delhi later, I've seen just about every situation you can imagine. What surprises most people is how diverse the reasons are. Here are the top five occasions that bring clients to book a companion in NCR.</p>
+        <p>From weddings and birthday outings to hospital visits and solo city explorations — people hire a companion for more reasons than you'd expect. What surprises most people is how diverse those reasons are. Here are the top five occasions that bring clients to book a companion in NCR.</p>
 
         <h2>1. 🎊 Delhi Weddings & Family Functions</h2>
-        <p>This is by far the most popular reason. Delhi NCR is wedding country — the events are grand, the relatives are observant, and showing up alone draws attention. Whether it's attending a cousin's wedding in Noida, a family function in Indirapuram, or needing a "brother" figure at a Delhi banquet hall — a companion transforms a stressful event into an enjoyable one. I've attended over 40 weddings and family functions across NCR, and the feedback is always the same: "It was so much easier with you there."</p>
+        <p>This is by far the most popular reason. Delhi NCR is wedding country — the events are grand, the relatives are observant, and showing up alone draws attention. Whether it's attending a cousin's wedding in Noida, a family function in Indirapuram, or needing a "brother" figure at a Delhi banquet hall — a companion transforms a stressful event into an enjoyable one. The feedback from clients is almost always the same: it made the whole experience so much easier.</p>
 
         <h2>2. 🎂 Solo Birthdays in Ghaziabad & Noida</h2>
         <p>Celebrating your birthday when your friends are out of town, or when you're new to Ghaziabad or Noida, can feel hollow. Several clients have booked me specifically for birthday outings — a nice dinner in Indirapuram, a movie in Vaishali, or just wandering through Raj Nagar Extension. No one should spend their birthday alone if they don't want to.</p>
@@ -2227,9 +2227,7 @@
 
   // ── CALENDAR ──
   const BOOKED_DATES = [
-    [2026,2,7],[2026,2,8],[2026,2,14],[2026,2,15],[2026,2,21],[2026,2,22],
-    [2026,2,28],[2026,3,4],[2026,3,5],[2026,3,11],[2026,3,12],[2026,3,18],
-    [2026,3,19],[2026,3,25],[2026,3,26],[2026,4,2],[2026,4,9],[2026,4,10],
+    [2026,3,2],[2026,3,9],[2026,3,10],[2026,3,16],[2026,3,23],[2026,3,30],
   ];
   let calYear = 2026, calMonth = 2;
 
@@ -2281,9 +2279,11 @@
   }
 
   // ── REVIEW FORM ──
-  // 👇 STEP 1: Paste your Google Apps Script Web App URL here after setup
+  // ⚠️ ACTION REQUIRED: Replace placeholder URLs below with your actual Google Apps Script Web App URL
+  // 1. Deploy your Apps Script as a Web App (doPost saves reviews, doGet returns JSON)
+  // 2. Paste the deployed URL into SHEET_WEBHOOK
+  // 3. Paste the same URL + ?action=get into PUBLISHED_REVIEWS_URL
   const SHEET_WEBHOOK = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-  // 👇 STEP 2: Paste your published reviews JSON URL here (same script, ?action=get)
   const PUBLISHED_REVIEWS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE?action=get';
 
   let selectedRating = 0;
