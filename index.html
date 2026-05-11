@@ -63,6 +63,8 @@
 <meta name="twitter:title" content="Rent a Companion in Ghaziabad, Noida & Delhi | Shobhit"/>
 <meta name="twitter:description" content="Platonic companion for hire in Ghaziabad, Noida & Delhi NCR. Events, weddings, outings. ID verified. From ₹399/hr."/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- Razorpay Payment SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
   :root {
     --cream: #FFF8F0;
@@ -754,6 +756,193 @@
   }
   footer span { color: var(--warm); }
 
+  /* ── JOIN AS COMPANION PAGE ── */
+  .join-hero {
+    background: linear-gradient(135deg, var(--brown) 0%, #5C3D2E 60%, #8B4513 100%);
+    padding: 64px 32px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .join-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,179,71,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 30%, rgba(255,123,84,0.12) 0%, transparent 50%);
+  }
+  .join-hero-content { position: relative; z-index: 1; }
+  .join-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: #fff; margin-bottom: 14px; line-height: 1.15;
+  }
+  .join-hero h1 em { color: var(--gold); font-style: italic; }
+  .join-hero p { color: rgba(255,255,255,0.72); font-size: 1.02rem; max-width: 560px; margin: 0 auto 28px; line-height: 1.7; font-weight: 300; }
+  .join-pricing-strip {
+    display: inline-flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+    background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.18);
+    border-radius: 20px; padding: 18px 32px; margin-bottom: 28px;
+  }
+  .join-price-item { text-align: center; }
+  .join-price-item .amount { font-size: 1.9rem; font-weight: 800; color: var(--gold); line-height: 1; }
+  .join-price-item .label { font-size: 0.72rem; color: rgba(255,255,255,0.6); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .join-price-divider { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; }
+  .join-how-badges {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 8px;
+  }
+  .join-badge {
+    background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
+    padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+
+  /* COMPANION CARDS SHOWCASE */
+  .companion-showcase {
+    background: var(--cream); padding: 52px 32px;
+    text-align: center;
+  }
+  .companion-cards-demo {
+    display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+    margin: 32px 0;
+  }
+  .companion-demo-card {
+    background: #fff; border-radius: 20px; padding: 22px 18px;
+    border: 1.5px solid var(--blush); width: 180px;
+    box-shadow: 0 6px 24px var(--shadow);
+    position: relative; transition: transform 0.25s;
+  }
+  .companion-demo-card:hover { transform: translateY(-6px); }
+  .companion-demo-card .demo-avatar {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--warm));
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    border: 3px solid var(--gold);
+  }
+  .companion-demo-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 4px; }
+  .companion-demo-card .demo-location { font-size: 0.72rem; color: var(--soft); margin-bottom: 8px; }
+  .companion-demo-card .demo-tags { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+  .companion-demo-card .demo-tag { background: var(--blush); color: var(--warm); padding: 2px 10px; border-radius: 50px; font-size: 0.68rem; font-weight: 600; }
+  .demo-verified-badge {
+    position: absolute; top: -8px; right: -8px;
+    background: var(--warm); color: #fff; border-radius: 50%;
+    width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; border: 2px solid #fff;
+  }
+  .demo-pending-badge {
+    background: #FFF3CD; color: #856404; font-size: 0.7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 50px; display: inline-block; margin-top: 8px;
+    border: 1px solid #FFE08A;
+  }
+
+  /* REGISTRATION FORM */
+  .join-form-section {
+    max-width: 820px; margin: 0 auto; padding: 52px 32px;
+  }
+  .join-form-wrap {
+    background: #fff; border-radius: 28px; padding: 44px 40px;
+    border: 1.5px solid var(--blush); box-shadow: 0 16px 52px var(--shadow);
+  }
+  .join-form-header { margin-bottom: 32px; }
+  .join-form-header h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; margin-bottom: 8px; }
+  .join-form-header p { color: var(--soft); font-size: 0.92rem; line-height: 1.6; }
+  .join-section-divider {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--warm); margin: 24px 0 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .join-section-divider::before, .join-section-divider::after {
+    content: ''; flex: 1; height: 1.5px; background: var(--blush);
+  }
+  .join-photo-upload {
+    border: 2px dashed var(--blush); border-radius: 16px;
+    padding: 28px; text-align: center; cursor: pointer;
+    transition: all 0.2s; background: var(--cream);
+    position: relative;
+  }
+  .join-photo-upload:hover { border-color: var(--warm); background: rgba(255,123,84,0.04); }
+  .join-photo-upload input[type=file] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%;
+  }
+  .join-photo-upload .upload-icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .join-photo-upload p { font-size: 0.85rem; color: var(--soft); }
+  .join-photo-upload strong { color: var(--warm); }
+  .join-photo-preview {
+    display: none; width: 90px; height: 90px; border-radius: 50%;
+    object-fit: cover; margin: 10px auto 0; border: 3px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(255,179,71,0.4);
+  }
+  .join-checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+  .join-checkbox-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--cream); border-radius: 12px; padding: 12px 14px;
+    border: 1.5px solid var(--blush); cursor: pointer; transition: all 0.2s;
+  }
+  .join-checkbox-item:hover { border-color: var(--warm); background: rgba(255,123,84,0.04); }
+  .join-checkbox-item input[type=checkbox] { margin-top: 2px; accent-color: var(--warm); width: 16px; height: 16px; flex-shrink: 0; }
+  .join-checkbox-item label { font-size: 0.87rem; color: var(--brown); cursor: pointer; line-height: 1.5; }
+  .join-checkbox-item label strong { color: var(--warm); }
+  .join-payment-box {
+    background: linear-gradient(135deg, rgba(255,123,84,0.07), rgba(255,179,71,0.07));
+    border: 2px solid var(--blush); border-radius: 18px;
+    padding: 22px 24px; margin: 20px 0;
+  }
+  .join-payment-box h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 14px; color: var(--brown); }
+  .join-payment-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--blush); }
+  .join-payment-row:last-of-type { border-bottom: none; }
+  .join-payment-row .desc { font-size: 0.88rem; color: var(--soft); }
+  .join-payment-row .price-tag { font-size: 1rem; font-weight: 700; color: var(--warm); }
+  .join-payment-total { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--blush); }
+  .join-payment-total .total-label { font-weight: 700; font-size: 0.9rem; }
+  .join-payment-total .total-amount { font-size: 1.3rem; font-weight: 800; color: var(--warm); }
+  .join-submit {
+    width: 100%; padding: 17px; background: linear-gradient(90deg, var(--warm), #e8663e);
+    color: #fff; border: none; border-radius: 16px; font-size: 1.05rem; font-weight: 800;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px;
+    transition: all 0.3s; box-shadow: 0 8px 28px rgba(255,123,84,0.4);
+    letter-spacing: 0.3px;
+  }
+  .join-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255,123,84,0.5); }
+  .join-submit:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+  .join-msg {
+    display: none; margin-top: 14px; padding: 14px 18px;
+    border-radius: 14px; font-size: 0.9rem; font-weight: 600; text-align: center;
+    line-height: 1.5;
+  }
+  .join-msg.success { background: #D4EDDA; color: #155724; display: block; }
+  .join-msg.error { background: #F8D7DA; color: #721C24; display: block; }
+
+  /* PROCESS STEPS */
+  .join-process {
+    background: #fff; padding: 52px 32px;
+    border-top: 1.5px solid var(--blush);
+    border-bottom: 1.5px solid var(--blush);
+  }
+  .join-steps {
+    max-width: 860px; margin: 32px auto 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 20px;
+  }
+  .join-step {
+    text-align: center; padding: 28px 18px;
+    background: var(--cream); border-radius: 20px; border: 1.5px solid var(--blush);
+  }
+  .join-step .step-num {
+    width: 42px; height: 42px; background: var(--warm); color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 800; margin: 0 auto 14px;
+  }
+  .join-step .step-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .join-step h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 6px; }
+  .join-step p { font-size: 0.82rem; color: var(--soft); line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .join-form-wrap { padding: 28px 18px; }
+    .join-form-section { padding: 36px 16px; }
+    .join-pricing-strip { gap: 16px; padding: 14px 20px; }
+  }
+
   /* ── REVIEW FORM ── */
   .review-form-wrap {
     background: #fff; border-radius: 24px; padding: 36px 32px;
@@ -987,6 +1176,7 @@
     <button class="tab-btn" onclick="switchTab('book')">📅 Book Now</button>
     <button class="tab-btn" onclick="switchTab('reviews')">💬 Reviews & Trust</button>
     <button class="tab-btn" onclick="switchTab('blog')">📝 Blog</button>
+    <button class="tab-btn" onclick="switchTab('join')" style="background:linear-gradient(90deg,var(--warm),var(--gold));color:#fff;font-weight:700;">🌟 Join as Companion</button>
   </div>
   <a class="nav-wa" href="https://wa.me/917888452012" target="_blank">💬 WhatsApp</a>
   <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
@@ -1001,6 +1191,7 @@
   <button class="mobile-tab-btn" onclick="switchTab('book');closeMenu()">📅 Book Now</button>
   <button class="mobile-tab-btn" onclick="switchTab('reviews');closeMenu()">💬 Reviews & Trust</button>
   <button class="mobile-tab-btn" onclick="switchTab('blog');closeMenu()">📝 Blog</button>
+  <button class="mobile-tab-btn" onclick="switchTab('join');closeMenu()" style="background:linear-gradient(90deg,var(--warm),var(--gold));color:#fff;font-weight:700;">🌟 Join as Companion</button>
   <a href="https://wa.me/917888452012" target="_blank" style="background:#25D366;color:#fff;padding:13px 16px;border-radius:12px;font-weight:700;text-decoration:none;text-align:center;margin-top:4px;">💬 WhatsApp Me</a>
 </div>
 
@@ -2125,6 +2316,317 @@
   </footer>
 </div>
 
+<!-- ═══════════════════════════════════════
+     TAB 6: JOIN AS COMPANION
+══════════════════════════════════════════ -->
+<div class="page" id="page-join">
+
+  <!-- Hero -->
+  <div class="join-hero">
+    <div class="join-hero-content">
+      <div class="section-label" style="color:var(--gold);margin-bottom:14px;">Now Accepting Applications</div>
+      <h1>Want to be someone's<br><em>companion too?</em></h1>
+      <p>Join hireshobhit.in as a verified companion. Get discovered by people across Ghaziabad, Noida & Delhi NCR who are looking for genuine, platonic company — for events, outings, hospital visits, and more.</p>
+      <div class="join-pricing-strip">
+        <div class="join-price-item">
+          <div class="amount">₹399</div>
+          <div class="label">One-time Registration</div>
+        </div>
+        <div class="join-price-divider"></div>
+        <div class="join-price-item">
+          <div class="amount">₹49</div>
+          <div class="label">Monthly Renewal</div>
+        </div>
+        <div class="join-price-divider"></div>
+        <div class="join-price-item">
+          <div class="amount">100%</div>
+          <div class="label">Platonic Only</div>
+        </div>
+      </div>
+      <div class="join-how-badges">
+        <span class="join-badge">✅ Reviewed by Shobhit before going live</span>
+        <span class="join-badge">🪪 ID Verification required</span>
+        <span class="join-badge">🔒 Privacy protected</span>
+        <span class="join-badge">📲 WhatsApp-based bookings</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works for companions -->
+  <div class="join-process">
+    <div style="text-align:center;">
+      <div class="section-label">The Process</div>
+      <h2 class="section-title">How it works for companions</h2>
+      <p class="section-sub">Simple, safe, and fully reviewed by Shobhit before you go live.</p>
+    </div>
+    <div class="join-steps">
+      <div class="join-step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📝</div>
+        <h4>Fill the form</h4>
+        <p>Share your basic details, bio, services you offer, and upload a profile photo.</p>
+      </div>
+      <div class="join-step">
+        <div class="step-num">2</div>
+        <div class="step-icon">💳</div>
+        <h4>Pay ₹399</h4>
+        <p>One-time registration fee via UPI. Monthly renewal is just ₹49 to stay active.</p>
+      </div>
+      <div class="join-step">
+        <div class="step-num">3</div>
+        <div class="step-icon">🔍</div>
+        <h4>Shobhit reviews</h4>
+        <p>Your profile is reviewed manually. Shobhit personally verifies and approves before publishing.</p>
+      </div>
+      <div class="join-step">
+        <div class="step-num">4</div>
+        <div class="step-icon">🌟</div>
+        <h4>Go live & earn</h4>
+        <p>Your profile goes live on the site. Clients discover you and book directly via WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo companion cards -->
+  <div class="companion-showcase">
+    <div class="section-label">Sample Profiles</div>
+    <h2 class="section-title">This could be your profile 👇</h2>
+    <p class="section-sub">Here's how approved companions appear on the platform.</p>
+    <div class="companion-cards-demo">
+      <div class="companion-demo-card">
+        <div class="demo-verified-badge">✓</div>
+        <div class="demo-avatar">👩</div>
+        <h4>Priya S.</h4>
+        <div class="demo-location">📍 Noida, Sector 62</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Events</span>
+          <span class="demo-tag">Outings</span>
+          <span class="demo-tag">Chat</span>
+        </div>
+      </div>
+      <div class="companion-demo-card">
+        <div class="demo-verified-badge">✓</div>
+        <div class="demo-avatar">🧑</div>
+        <h4>Arjun M.</h4>
+        <div class="demo-location">📍 Ghaziabad, Indirapuram</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Weddings</span>
+          <span class="demo-tag">Hospital</span>
+          <span class="demo-tag">Travel</span>
+        </div>
+      </div>
+      <div class="companion-demo-card" style="opacity:0.55;">
+        <div class="demo-avatar" style="background:linear-gradient(135deg,#ddd,#bbb);">🙂</div>
+        <h4>Your Name</h4>
+        <div class="demo-location">📍 Your City</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Your Skills</span>
+        </div>
+        <span class="demo-pending-badge">⏳ Pending Review</span>
+      </div>
+    </div>
+    <p style="font-size:0.85rem; color:var(--soft); margin-top:8px;">All profiles shown are illustrative. Real profiles are verified by Shobhit before going live.</p>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="join-form-section">
+    <div class="join-form-wrap">
+      <div class="join-form-header">
+        <div class="section-label">Companion Registration</div>
+        <h2>Apply to Join 🌟</h2>
+        <p>Fill in your details below. Once submitted, Shobhit will review your application via WhatsApp and approve your profile personally.</p>
+      </div>
+
+      <!-- BASIC INFO -->
+      <div class="join-section-divider">Basic Information</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="j-name" placeholder="e.g. Priya Sharma" />
+        </div>
+        <div class="form-group">
+          <label>Age *</label>
+          <input type="number" id="j-age" placeholder="e.g. 25" min="18" max="60" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>WhatsApp Number *</label>
+          <input type="tel" id="j-phone" placeholder="e.g. 9876543210" />
+        </div>
+        <div class="form-group">
+          <label>Gender *</label>
+          <select id="j-gender">
+            <option value="">Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Non-binary / Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City / Area *</label>
+          <input type="text" id="j-city" placeholder="e.g. Indirapuram, Ghaziabad" />
+        </div>
+        <div class="form-group">
+          <label>Languages Spoken *</label>
+          <input type="text" id="j-languages" placeholder="e.g. Hindi, English" />
+        </div>
+      </div>
+
+      <!-- PROFILE PHOTO -->
+      <div class="join-section-divider">Profile Photo</div>
+      <div class="form-group">
+        <label>Upload a clear, friendly photo *</label>
+        <div class="join-photo-upload" id="photoUploadBox">
+          <input type="file" id="j-photo" accept="image/*" onchange="previewPhoto(this)" />
+          <div class="upload-icon">📸</div>
+          <p><strong>Click to upload</strong> or drag & drop<br><span style="font-size:0.78rem;">JPG, PNG — max 5MB. A clear, smiling photo works best.</span></p>
+          <img class="join-photo-preview" id="photoPreview" alt="Preview" />
+        </div>
+        <div id="j-photo-name" style="font-size:0.8rem;color:var(--soft);margin-top:6px;"></div>
+      </div>
+
+      <!-- BIO & PERSONALITY -->
+      <div class="join-section-divider">About You</div>
+      <div class="form-group">
+        <label>Your Bio (shown on profile) *</label>
+        <textarea id="j-bio" rows="4" placeholder="Write 2-3 sentences about yourself — your personality, interests, and why someone would enjoy your company. E.g. 'I'm a warm, easy-going person from Noida who loves chai conversations and exploring the city. I'm great company at events, outings, or just a calm walk in the park...'"></textarea>
+        <div style="font-size:0.75rem;color:var(--soft);margin-top:4px;">Minimum 60 characters. Be genuine — people connect with real personalities.</div>
+      </div>
+      <div class="form-group">
+        <label>Your Personality Traits (pick up to 5 — separate with commas)</label>
+        <input type="text" id="j-traits" placeholder="e.g. Empathetic, Funny, Calm, Good listener, Adventurous" />
+      </div>
+
+      <!-- SERVICES -->
+      <div class="join-section-divider">Services You Offer</div>
+      <div class="form-group">
+        <label>Which services can you provide? *</label>
+        <div class="join-checkbox-group">
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Wedding / Family Gatherings" />
+            <label>🎊 <strong>Wedding / Family Gatherings</strong> — Accompany clients to weddings, engagements, family events as a friend or date-like presence</label>
+          </label>
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Outing Companion" />
+            <label>🛍️ <strong>Outing Companion</strong> — Shopping, movies, parks, exploring the city together</label>
+          </label>
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Hospital / Medical Support" />
+            <label>🏥 <strong>Hospital / Medical Support</strong> — Accompany to clinics, hospitals, tests — calm, supportive presence</label>
+          </label>
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Chai & Conversation" />
+            <label>☕ <strong>Chai & Conversation</strong> — Just talk, share, listen — a real non-judgmental friend for a few hours</label>
+          </label>
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Virtual / Video Call" />
+            <label>💻 <strong>Virtual / Video Call</strong> — Online sessions via WhatsApp/Google Meet for remote clients</label>
+          </label>
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Travel Companion" />
+            <label>✈️ <strong>Travel Companion</strong> — Day trips, local travel together</label>
+          </label>
+          <label class="join-checkbox-item">
+            <input type="checkbox" class="j-service" value="Corporate Event Support" />
+            <label>💼 <strong>Corporate / Professional Events</strong> — Office parties, networking events, conferences</label>
+          </label>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Your pricing (per hour in ₹) *</label>
+        <input type="number" id="j-rate" placeholder="e.g. 500" min="200" />
+        <div style="font-size:0.75rem;color:var(--soft);margin-top:4px;">Minimum ₹200/hr. You set your own rate — Shobhit may suggest adjustments before going live.</div>
+      </div>
+
+      <!-- AVAILABILITY -->
+      <div class="join-section-divider">Availability</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Days Available *</label>
+          <select id="j-days">
+            <option value="">Select availability</option>
+            <option>Weekdays only (Mon–Fri)</option>
+            <option>Weekends only (Sat–Sun)</option>
+            <option>All 7 days</option>
+            <option>Flexible / as needed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Timings *</label>
+          <select id="j-timings">
+            <option value="">Select timing</option>
+            <option>Mornings (9am–1pm)</option>
+            <option>Afternoons (12pm–5pm)</option>
+            <option>Evenings (5pm–9pm)</option>
+            <option>Flexible / any time</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SOCIAL PROOF / VERIFICATION -->
+      <div class="join-section-divider">Verification & Links</div>
+      <div class="form-group">
+        <label>Instagram / LinkedIn profile URL (optional but recommended)</label>
+        <input type="url" id="j-social" placeholder="e.g. https://instagram.com/yourhandle" />
+        <div style="font-size:0.75rem;color:var(--soft);margin-top:4px;">Helps build trust with clients. Shobhit uses this during review only — not shown publicly without your consent.</div>
+      </div>
+      <div class="form-group">
+        <label>Any additional note for Shobhit (optional)</label>
+        <textarea id="j-note" rows="2" placeholder="Anything you want Shobhit to know before the review — e.g. your experience, preferred client types, boundaries, etc."></textarea>
+      </div>
+
+      <!-- TERMS -->
+      <div class="join-section-divider">Agreement</div>
+      <div class="join-checkbox-group" style="margin-bottom:20px;">
+        <label class="join-checkbox-item">
+          <input type="checkbox" id="j-agree1" />
+          <label>I confirm this service is <strong>100% platonic</strong> — no romantic or physical services are offered or implied. I agree to maintain professional boundaries at all times.</label>
+        </label>
+        <label class="join-checkbox-item">
+          <input type="checkbox" id="j-agree2" />
+          <label>I understand my profile will be <strong>reviewed and approved by Shobhit</strong> before going live, and may be removed at any time for policy violations.</label>
+        </label>
+        <label class="join-checkbox-item">
+          <input type="checkbox" id="j-agree3" />
+          <label>I agree to the <strong>₹399 one-time registration fee</strong> and <strong>₹49/month renewal</strong> to keep my profile active.</label>
+        </label>
+      </div>
+
+      <!-- PAYMENT INFO -->
+      <div class="join-payment-box">
+        <h4>💳 Payment Summary</h4>
+        <div class="join-payment-row">
+          <span class="desc">One-time Registration Fee</span>
+          <span class="price-tag">₹399</span>
+        </div>
+        <div class="join-payment-row">
+          <span class="desc">Monthly Renewal (after 30 days)</span>
+          <span class="price-tag">₹49/month</span>
+        </div>
+        <div class="join-payment-total">
+          <span class="total-label">Due Today (Registration)</span>
+          <span class="total-amount">₹399</span>
+        </div>
+        <p style="font-size:0.78rem;color:var(--soft);margin-top:10px;">💡 After submitting this form, Shobhit will reach out on WhatsApp with a UPI payment link. Your profile goes live only after payment + manual approval.</p>
+      </div>
+
+      <button class="join-submit" id="j-btn" onclick="submitJoinForm()">
+        🌟 Submit My Application — ₹399 Registration
+      </button>
+      <div class="join-msg" id="j-msg"></div>
+
+      <p style="text-align:center;font-size:0.8rem;color:var(--soft);margin-top:18px;">
+        Questions? <a href="https://wa.me/917888452012?text=Hi Shobhit! I want to join as a companion on hireshobhit.in. Can you tell me more?" target="_blank" style="color:var(--warm);font-weight:700;">Chat with Shobhit on WhatsApp →</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+<!-- END JOIN PAGE -->
+
 <!-- MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
@@ -2144,7 +2646,7 @@
 
     document.getElementById('page-' + tab).classList.add('active');
 
-    const tabMap = { home: 0, services: 1, book: 2, reviews: 3, blog: 4 };
+    const tabMap = { home: 0, services: 1, book: 2, reviews: 3, blog: 4, join: 5 };
     const idx = tabMap[tab];
     document.querySelectorAll('.tab-btn')[idx]?.classList.add('active');
     document.querySelectorAll('.mobile-tab-btn')[idx]?.classList.add('active');
@@ -2283,8 +2785,8 @@
   // 1. Deploy your Apps Script as a Web App (doPost saves reviews, doGet returns JSON)
   // 2. Paste the deployed URL into SHEET_WEBHOOK
   // 3. Paste the same URL + ?action=get into PUBLISHED_REVIEWS_URL
-  const SHEET_WEBHOOK = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-  const PUBLISHED_REVIEWS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE?action=get';
+  const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyr2KjtTPDCPDziOvfwGG080YxBWXebnMDCo_CRwGECZaw7X2JA86IQr7q_kfJ7IFWT/exec';
+  const PUBLISHED_REVIEWS_URL = 'https://script.google.com/macros/s/AKfycbyr2KjtTPDCPDziOvfwGG080YxBWXebnMDCo_CRwGECZaw7X2JA86IQr7q_kfJ7IFWT/exec';
 
   let selectedRating = 0;
 
@@ -2398,6 +2900,154 @@
   }
 
   loadPublishedReviews();
+
+  // ── JOIN AS COMPANION FORM ──
+  function previewPhoto(input) {
+    const preview = document.getElementById('photoPreview');
+    const nameEl  = document.getElementById('j-photo-name');
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(input.files[0]);
+      nameEl.textContent = '📎 ' + input.files[0].name;
+    }
+  }
+
+  // ── COMPANION APPS SCRIPT URL ──
+  // ⚠️ STEP REQUIRED: Paste your Google Apps Script Web App URL below after deploying
+  const COMPANION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyr2KjtTPDCPDziOvfwGG080YxBWXebnMDCo_CRwGECZaw7X2JA86IQr7q_kfJ7IFWT/exec';
+
+  // ── RAZORPAY KEY ──
+  // ⚠️ STEP REQUIRED: Paste your Razorpay Key ID below (starts with rzp_live_ or rzp_test_)
+  const RAZORPAY_KEY = 'YOUR_RAZORPAY_KEY_ID_HERE';
+
+  // Stores validated form data while waiting for payment
+  let pendingApplication = null;
+
+  async function submitJoinForm() {
+    const name      = document.getElementById('j-name').value.trim();
+    const age       = document.getElementById('j-age').value.trim();
+    const phone     = document.getElementById('j-phone').value.trim();
+    const gender    = document.getElementById('j-gender').value;
+    const city      = document.getElementById('j-city').value.trim();
+    const languages = document.getElementById('j-languages').value.trim();
+    const bio       = document.getElementById('j-bio').value.trim();
+    const traits    = document.getElementById('j-traits').value.trim();
+    const rate      = document.getElementById('j-rate').value.trim();
+    const days      = document.getElementById('j-days').value;
+    const timings   = document.getElementById('j-timings').value;
+    const social    = document.getElementById('j-social').value.trim();
+    const note      = document.getElementById('j-note').value.trim();
+    const agree1    = document.getElementById('j-agree1').checked;
+    const agree2    = document.getElementById('j-agree2').checked;
+    const agree3    = document.getElementById('j-agree3').checked;
+    const services  = [...document.querySelectorAll('.j-service:checked')].map(c => c.value);
+    const msgEl     = document.getElementById('j-msg');
+    const btn       = document.getElementById('j-btn');
+
+    msgEl.className = 'join-msg'; msgEl.style.display = 'none';
+
+    // Validation
+    if (!name)                     { msgEl.textContent = '👤 Please enter your full name.'; msgEl.className = 'join-msg error'; return; }
+    if (!age || Number(age) < 18)  { msgEl.textContent = '🎂 Please enter a valid age (18+).'; msgEl.className = 'join-msg error'; return; }
+    if (!phone)                    { msgEl.textContent = '📱 Please enter your WhatsApp number.'; msgEl.className = 'join-msg error'; return; }
+    if (!gender)                   { msgEl.textContent = '🙋 Please select your gender.'; msgEl.className = 'join-msg error'; return; }
+    if (!city)                     { msgEl.textContent = '📍 Please enter your city / area.'; msgEl.className = 'join-msg error'; return; }
+    if (!languages)                { msgEl.textContent = '🗣️ Please enter languages spoken.'; msgEl.className = 'join-msg error'; return; }
+    if (bio.length < 60)           { msgEl.textContent = '✍️ Please write a bio of at least 60 characters.'; msgEl.className = 'join-msg error'; return; }
+    if (services.length === 0)     { msgEl.textContent = '🎭 Please select at least one service you offer.'; msgEl.className = 'join-msg error'; return; }
+    if (!rate || Number(rate) < 200){ msgEl.textContent = '💰 Please enter your hourly rate (minimum ₹200).'; msgEl.className = 'join-msg error'; return; }
+    if (!days)                     { msgEl.textContent = '📅 Please select your availability.'; msgEl.className = 'join-msg error'; return; }
+    if (!timings)                  { msgEl.textContent = '🕐 Please select your preferred timings.'; msgEl.className = 'join-msg error'; return; }
+    if (!agree1 || !agree2 || !agree3) { msgEl.textContent = '☑️ Please agree to all three terms before submitting.'; msgEl.className = 'join-msg error'; return; }
+
+    // Save validated data
+    pendingApplication = { name, age, phone, gender, city, languages, bio, traits, rate, days, timings, social, note, services, timestamp: new Date().toISOString(), status: 'pending_payment' };
+
+    // Open Razorpay payment
+    if (RAZORPAY_KEY === 'YOUR_RAZORPAY_KEY_ID_HERE') {
+      // No key yet — fall back to WhatsApp flow
+      btn.disabled = true; btn.textContent = 'Sending…';
+      await saveApplicationToSheet(pendingApplication, 'pending_review');
+      sendApplicationWhatsApp(pendingApplication);
+      msgEl.innerHTML = '🎉 Application received! Shobhit will WhatsApp you with a payment link within a few hours. Your profile goes live after ₹399 payment + manual approval. 🙏';
+      msgEl.className = 'join-msg success';
+      btn.textContent = '🌟 Submit My Application — ₹399 Registration';
+      btn.disabled = false;
+      return;
+    }
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: 39900, // ₹399 in paise
+      currency: 'INR',
+      name: 'hireshobhit.in',
+      description: 'Companion Registration Fee',
+      image: 'https://hireshobhit.in/shobhit.jpg',
+      prefill: { name, contact: phone },
+      notes: { applicant_name: name, applicant_phone: phone, applicant_city: city },
+      theme: { color: '#FF7B54' },
+      handler: async function(response) {
+        // Payment successful
+        btn.disabled = true; btn.textContent = 'Saving your application…';
+        pendingApplication.razorpay_payment_id = response.razorpay_payment_id;
+        pendingApplication.status = 'paid_pending_approval';
+        await saveApplicationToSheet(pendingApplication, 'paid_pending_approval');
+        sendApplicationWhatsApp(pendingApplication, response.razorpay_payment_id);
+        msgEl.innerHTML = `✅ Payment of ₹399 received! (ID: ${response.razorpay_payment_id})<br><br>🎉 Your application has been saved. Shobhit will review and approve your profile within 24 hours. You'll get a WhatsApp notification when you go live!`;
+        msgEl.className = 'join-msg success';
+        btn.textContent = '🌟 Submit My Application — ₹399 Registration';
+        btn.disabled = false;
+      },
+      modal: {
+        ondismiss: function() {
+          msgEl.textContent = '⚠️ Payment was cancelled. Your details are saved — click submit again to retry payment.';
+          msgEl.className = 'join-msg error';
+        }
+      }
+    };
+
+    try {
+      const rzp = new Razorpay(options);
+      rzp.open();
+    } catch(e) {
+      msgEl.textContent = '❌ Payment could not open. Please make sure your Razorpay key is correctly set, or use the WhatsApp button below to contact Shobhit directly.';
+      msgEl.className = 'join-msg error';
+    }
+  }
+
+  async function saveApplicationToSheet(data, status) {
+    if (COMPANION_WEBHOOK === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+    try {
+      await fetch(COMPANION_WEBHOOK, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, status, action: 'new_companion' })
+      });
+    } catch(e) { console.warn('Sheet save failed:', e); }
+  }
+
+  function sendApplicationWhatsApp(data, paymentId) {
+    const paid = paymentId ? `✅ PAYMENT RECEIVED — ID: ${paymentId}` : '⏳ PAYMENT PENDING — Please send payment link';
+    const waText = `🌟 NEW COMPANION APPLICATION — hireshobhit.in%0A${encodeURIComponent(paid)}%0A%0A` +
+      `👤 Name: ${encodeURIComponent(data.name)}%0A` +
+      `🎂 Age: ${encodeURIComponent(data.age)} | ⚧ ${encodeURIComponent(data.gender)}%0A` +
+      `📱 WhatsApp: ${encodeURIComponent(data.phone)}%0A` +
+      `📍 City: ${encodeURIComponent(data.city)}%0A` +
+      `🗣️ Languages: ${encodeURIComponent(data.languages)}%0A%0A` +
+      `📝 Bio: ${encodeURIComponent(data.bio)}%0A` +
+      `✨ Traits: ${encodeURIComponent(data.traits || 'Not specified')}%0A%0A` +
+      `🎭 Services: ${encodeURIComponent(data.services.join(', '))}%0A` +
+      `💰 Rate: ₹${encodeURIComponent(data.rate)}/hr%0A` +
+      `📅 ${encodeURIComponent(data.days)}, ${encodeURIComponent(data.timings)}%0A` +
+      `🔗 Social: ${encodeURIComponent(data.social || 'Not provided')}%0A` +
+      `💬 Note: ${encodeURIComponent(data.note || 'None')}%0A%0A` +
+      `👉 Open admin panel to APPROVE / REJECT: https://hireshobhit.in/admin.html`;
+    window.open('https://wa.me/917888452012?text=' + waText, '_blank');
+  }
   renderCalendar();
 
   // ── ENQUIRY FORM ──
