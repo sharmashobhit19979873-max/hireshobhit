@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin Panel — hireshobhit.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #FFF8F0; --warm: #FF7B54; --gold: #FFB347;
+    --blush: #FFD6BA; --brown: #3D2B1F; --soft: #7C5C4E;
+    --green: #2e7d32; --green-bg: #E8F5E9;
+    --red: #c62828; --red-bg: #FFEBEE;
+    --yellow: #856404; --yellow-bg: #FFF3CD;
+    --shadow: rgba(61,43,31,0.10);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--brown); min-height:100vh; }
+
+  /* LOGIN */
+  .login-screen {
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--brown), #5C3D2E);
+  }
+  .login-box {
+    background:#fff; border-radius:28px; padding:48px 40px;
+    width:100%; max-width:400px; text-align:center;
+    box-shadow:0 24px 80px rgba(0,0,0,0.3);
+  }
+  .login-box .logo { font-family:'Playfair Display',serif; font-size:2rem; color:var(--warm); margin-bottom:8px; }
+  .login-box p { color:var(--soft); font-size:0.9rem; margin-bottom:32px; }
+  .login-box input {
+    width:100%; padding:14px 16px; border:1.5px solid var(--blush);
+    border-radius:12px; font-family:'DM Sans',sans-serif; font-size:0.95rem;
+    color:var(--brown); background:var(--cream); outline:none; margin-bottom:14px;
+    transition:border-color 0.2s;
+  }
+  .login-box input:focus { border-color:var(--warm); background:#fff; }
+  .login-btn {
+    width:100%; padding:14px; background:var(--warm); color:#fff;
+    border:none; border-radius:12px; font-size:1rem; font-weight:700;
+    font-family:'DM Sans',sans-serif; cursor:pointer; transition:all 0.2s;
+  }
+  .login-btn:hover { background:#e8663e; }
+  .login-error { color:#c62828; font-size:0.85rem; margin-top:10px; display:none; }
+
+  /* TOP BAR */
+  .top-bar {
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,248,240,0.97); backdrop-filter:blur(14px);
+    border-bottom:1.5px solid var(--blush);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 32px; height:64px;
+  }
+  .top-bar .logo { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--warm); }
+  .top-bar .logo span { color:var(--brown); }
+  .admin-badge {
+    background:var(--brown); color:#fff; padding:5px 16px;
+    border-radius:50px; font-size:0.78rem; font-weight:700; letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .logout-btn {
+    background:var(--blush); color:var(--brown); border:none;
+    padding:8px 20px; border-radius:50px; font-family:'DM Sans',sans-serif;
+    font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.2s;
+  }
+  .logout-btn:hover { background:var(--warm); color:#fff; }
+
+  /* MAIN */
+  .main { max-width:1200px; margin:0 auto; padding:40px 32px; }
+
+  /* STATS ROW */
+  .stats-row {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:16px; margin-bottom:36px;
+  }
+  .stat-card {
+    background:#fff; border-radius:18px; padding:22px 18px;
+    border:1.5px solid var(--blush); text-align:center;
+    box-shadow:0 4px 16px var(--shadow);
+  }
+  .stat-card .num { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--warm); }
+  .stat-card .lbl { font-size:0.78rem; color:var(--soft); font-weight:500; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px; }
+
+  /* FILTER TABS */
+  .filter-tabs { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+  .filter-tab {
+    padding:8px 20px; border-radius:50px; font-family:'DM Sans',sans-serif;
+    font-size:0.85rem; font-weight:600; cursor:pointer; border:1.5px solid var(--blush);
+    background:#fff; color:var(--soft); transition:all 0.2s;
+  }
+  .filter-tab.active { background:var(--warm); color:#fff; border-color:var(--warm); box-shadow:0 4px 14px rgba(255,123,84,0.3); }
+  .filter-tab:not(.active):hover { border-color:var(--warm); color:var(--warm); }
+
+  /* SEARCH */
+  .search-bar {
+    width:100%; padding:12px 18px; border:1.5px solid var(--blush);
+    border-radius:14px; font-family:'DM Sans',sans-serif; font-size:0.92rem;
+    color:var(--brown); background:#fff; outline:none; margin-bottom:24px;
+    transition:border-color 0.2s;
+  }
+  .search-bar:focus { border-color:var(--warm); }
+
+  /* REFRESH */
+  .refresh-btn {
+    background:var(--blush); color:var(--brown); border:none;
+    padding:10px 22px; border-radius:50px; font-family:'DM Sans',sans-serif;
+    font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.2s;
+    margin-bottom:24px; display:inline-flex; align-items:center; gap:8px;
+  }
+  .refresh-btn:hover { background:var(--warm); color:#fff; }
+  .refresh-btn.spinning { animation:spin 1s linear infinite; }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+  /* APPLICATION CARDS */
+  .applications-list { display:flex; flex-direction:column; gap:18px; }
+  .app-card {
+    background:#fff; border-radius:22px; padding:28px;
+    border:1.5px solid var(--blush); box-shadow:0 4px 20px var(--shadow);
+    transition:all 0.3s;
+  }
+  .app-card:hover { box-shadow:0 8px 32px var(--shadow); }
+  .app-card.status-paid_pending_approval { border-left:4px solid var(--gold); }
+  .app-card.status-approved { border-left:4px solid var(--green); }
+  .app-card.status-rejected { border-left:4px solid var(--red); opacity:0.7; }
+  .app-card.status-pending_review { border-left:4px solid #aaa; }
+
+  .app-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
+  .app-identity { display:flex; align-items:center; gap:14px; }
+  .app-avatar {
+    width:52px; height:52px; border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--warm));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; font-weight:800; color:#fff; flex-shrink:0;
+    font-family:'Playfair Display',serif;
+  }
+  .app-name { font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:3px; }
+  .app-meta { font-size:0.82rem; color:var(--soft); }
+
+  .status-badge {
+    padding:5px 16px; border-radius:50px; font-size:0.75rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap;
+  }
+  .badge-paid_pending_approval { background:var(--yellow-bg); color:var(--yellow); }
+  .badge-approved              { background:var(--green-bg);  color:var(--green);  }
+  .badge-rejected              { background:var(--red-bg);    color:var(--red);    }
+  .badge-pending_review        { background:#f5f5f5;          color:#666;          }
+
+  .app-body { display:grid; grid-template-columns:1fr 1fr; gap:12px 28px; margin-bottom:18px; }
+  .app-field { }
+  .app-field .field-label { font-size:0.72rem; font-weight:700; color:var(--soft); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px; }
+  .app-field .field-val { font-size:0.88rem; color:var(--brown); line-height:1.5; }
+  .app-bio { grid-column:1/-1; }
+  .app-services-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+  .app-service-tag { background:var(--blush); color:var(--warm); padding:3px 12px; border-radius:50px; font-size:0.73rem; font-weight:600; }
+
+  .app-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; padding-top:16px; border-top:1.5px solid var(--blush); }
+  .btn-approve {
+    background:var(--green); color:#fff; border:none;
+    padding:10px 24px; border-radius:12px; font-family:'DM Sans',sans-serif;
+    font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.2s;
+    display:flex; align-items:center; gap:6px;
+  }
+  .btn-approve:hover { background:#1b5e20; transform:translateY(-1px); }
+  .btn-reject {
+    background:var(--red-bg); color:var(--red); border:1.5px solid #ef9a9a;
+    padding:10px 24px; border-radius:12px; font-family:'DM Sans',sans-serif;
+    font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.2s;
+    display:flex; align-items:center; gap:6px;
+  }
+  .btn-reject:hover { background:var(--red); color:#fff; }
+  .btn-whatsapp-contact {
+    background:#25D366; color:#fff; border:none; text-decoration:none;
+    padding:10px 20px; border-radius:12px; font-family:'DM Sans',sans-serif;
+    font-weight:700; font-size:0.85rem; cursor:pointer; transition:all 0.2s;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .btn-whatsapp-contact:hover { background:#1fba59; }
+  .app-timestamp { font-size:0.75rem; color:var(--soft); margin-left:auto; }
+
+  /* EMPTY / LOADING */
+  .empty-state {
+    text-align:center; padding:60px 24px;
+    background:#fff; border-radius:22px; border:2px dashed var(--blush);
+  }
+  .empty-state .emoji { font-size:3rem; margin-bottom:14px; }
+  .empty-state h3 { font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:8px; }
+  .empty-state p { color:var(--soft); font-size:0.9rem; max-width:380px; margin:0 auto; line-height:1.7; }
+  .loading-spinner {
+    text-align:center; padding:40px;
+    font-size:0.95rem; color:var(--soft);
+  }
+
+  /* TOAST */
+  .toast {
+    position:fixed; bottom:28px; right:28px; z-index:9999;
+    background:var(--brown); color:#fff; padding:14px 22px;
+    border-radius:14px; font-size:0.9rem; font-weight:600;
+    box-shadow:0 8px 28px rgba(0,0,0,0.3);
+    transform:translateY(100px); opacity:0;
+    transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    max-width:320px;
+  }
+  .toast.show { transform:translateY(0); opacity:1; }
+  .toast.success { background:var(--green); }
+  .toast.error { background:var(--red); }
+
+  /* CONFIG BANNER */
+  .config-banner {
+    background:linear-gradient(135deg,#FFF3CD,#FFE082);
+    border:1.5px solid #FFD54F; border-radius:16px;
+    padding:16px 20px; margin-bottom:28px;
+    display:flex; align-items:flex-start; gap:12px;
+  }
+  .config-banner .icon { font-size:1.4rem; flex-shrink:0; }
+  .config-banner h4 { font-size:0.9rem; font-weight:700; color:#5D4037; margin-bottom:4px; }
+  .config-banner p { font-size:0.82rem; color:#6D4C41; line-height:1.6; }
+  .config-banner code {
+    background:rgba(0,0,0,0.08); padding:2px 8px;
+    border-radius:6px; font-size:0.82rem; font-family:monospace;
+  }
+
+  @media (max-width:768px) {
+    .main { padding:24px 16px; }
+    .top-bar { padding:0 16px; }
+    .app-body { grid-template-columns:1fr; }
+    .admin-badge { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ── -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="logo">Shobhit<span>.</span></div>
+    <p>Admin Panel — hireshobhit.in<br>Only you can access this.</p>
+    <input type="password" id="adminPassword" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')login()" />
+    <!--
+      ⚠️ DEFAULT PASSWORD IS: shobhit2024
+      Change it by editing the checkPassword() function below.
+    -->
+    <button class="login-btn" onclick="login()">🔐 Login</button>
+    <div class="login-error" id="loginError">❌ Wrong password. Try again.</div>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div id="adminPanel" style="display:none;">
+
+  <div class="top-bar">
+    <div class="logo">Shobhit<span>.</span></div>
+    <span class="admin-badge">⚙️ Admin</span>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <button class="refresh-btn" onclick="loadApplications()" id="refreshBtn">🔄 Refresh</button>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- CONFIG BANNER (shown until Apps Script URL is set) -->
+    <div class="config-banner" id="configBanner">
+      <div class="icon">⚙️</div>
+      <div>
+        <h4>Setup Required — Paste your Google Apps Script URL</h4>
+        <p>Open this file in a text editor and find <code>APPS_SCRIPT_URL</code> near the top of the &lt;script&gt; section. Paste your deployed Apps Script URL there. Once done, this banner disappears and applications will load automatically.<br><br>
+        <strong>Don't have the URL yet?</strong> Follow the step-by-step guide in the setup document Shobhit received.</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card"><div class="num" id="stat-total">—</div><div class="lbl">Total Applications</div></div>
+      <div class="stat-card"><div class="num" id="stat-pending" style="color:var(--gold);">—</div><div class="lbl">Awaiting Review</div></div>
+      <div class="stat-card"><div class="num" id="stat-approved" style="color:var(--green);">—</div><div class="lbl">Approved & Live</div></div>
+      <div class="stat-card"><div class="num" id="stat-rejected" style="color:var(--red);">—</div><div class="lbl">Rejected</div></div>
+      <div class="stat-card"><div class="num" id="stat-revenue" style="color:var(--warm);">—</div><div class="lbl">Registration Revenue</div></div>
+    </div>
+
+    <!-- FILTERS + SEARCH -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="setFilter('all')" id="tab-all">All</button>
+      <button class="filter-tab" onclick="setFilter('paid_pending_approval')" id="tab-paid_pending_approval">💰 Paid — Needs Approval</button>
+      <button class="filter-tab" onclick="setFilter('pending_review')" id="tab-pending_review">⏳ Pending Payment</button>
+      <button class="filter-tab" onclick="setFilter('approved')" id="tab-approved">✅ Approved</button>
+      <button class="filter-tab" onclick="setFilter('rejected')" id="tab-rejected">❌ Rejected</button>
+    </div>
+
+    <input class="search-bar" type="text" id="searchInput" placeholder="🔍 Search by name, city, phone…" oninput="renderCards()" />
+
+    <!-- APPLICATION CARDS -->
+    <div id="appList" class="applications-list">
+      <div class="loading-spinner">⏳ Loading applications…</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ════════════════════════════════════════
+  // ⚠️  CONFIGURATION — EDIT THESE VALUES
+  // ════════════════════════════════════════
+
+  // 1. Paste your Google Apps Script Web App URL here (same one you put in index.html)
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyr2KjtTPDCPDziOvfwGG080YxBWXebnMDCo_CRwGECZaw7X2JA86IQr7q_kfJ7IFWT/exec';
+
+  // 2. Change this password to something only you know
+  function checkPassword(pw) {
+    return pw === 'Kiran@123'; // ← CHANGE THIS
+  }
+
+  // ════════════════════════════════════════
+
+  let allApplications = [];
+  let currentFilter   = 'all';
+
+  // ── AUTH ──
+  function login() {
+    const pw = document.getElementById('adminPassword').value;
+    if (checkPassword(pw)) {
+      document.getElementById('loginScreen').style.display  = 'none';
+      document.getElementById('adminPanel').style.display   = 'block';
+      sessionStorage.setItem('admin_auth', '1');
+      loadApplications();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+      document.getElementById('adminPassword').value = '';
+    }
+  }
+  function logout() {
+    sessionStorage.removeItem('admin_auth');
+    document.getElementById('loginScreen').style.display = 'block';
+    document.getElementById('adminPanel').style.display  = 'none';
+  }
+  // Auto-login if session active
+  if (sessionStorage.getItem('admin_auth') === '1') {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display  = 'block';
+  }
+
+  // ── LOAD APPLICATIONS FROM GOOGLE SHEETS ──
+  async function loadApplications() {
+    if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+      document.getElementById('configBanner').style.display = 'flex';
+      document.getElementById('appList').innerHTML = `
+        <div class="empty-state">
+          <div class="emoji">⚙️</div>
+          <h3>Apps Script not configured yet</h3>
+          <p>Follow the setup guide to connect Google Sheets. Once done, all companion applications will appear here.</p>
+        </div>`;
+      updateStats([]);
+      return;
+    }
+    document.getElementById('configBanner').style.display = 'none';
+    document.getElementById('appList').innerHTML = '<div class="loading-spinner">⏳ Loading applications…</div>';
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL + '?action=get_companions&t=' + Date.now());
+      const data = await res.json();
+      allApplications = Array.isArray(data) ? data : [];
+      updateStats(allApplications);
+      renderCards();
+    } catch(e) {
+      document.getElementById('appList').innerHTML = `
+        <div class="empty-state">
+          <div class="emoji">❌</div>
+          <h3>Could not load applications</h3>
+          <p>Check that your Apps Script URL is correct and the script is deployed as a Web App with access set to "Anyone".</p>
+        </div>`;
+      showToast('Failed to load. Check Apps Script URL.', 'error');
+    }
+    btn.classList.remove('spinning');
+  }
+
+  // ── STATS ──
+  function updateStats(apps) {
+    const paid     = apps.filter(a => a.status === 'paid_pending_approval').length;
+    const pending  = apps.filter(a => a.status === 'pending_review').length;
+    const approved = apps.filter(a => a.status === 'approved').length;
+    const rejected = apps.filter(a => a.status === 'rejected').length;
+    const revenue  = apps.filter(a => a.razorpay_payment_id).length * 399;
+    document.getElementById('stat-total').textContent    = apps.length || '0';
+    document.getElementById('stat-pending').textContent  = (paid + pending) || '0';
+    document.getElementById('stat-approved').textContent = approved || '0';
+    document.getElementById('stat-rejected').textContent = rejected || '0';
+    document.getElementById('stat-revenue').textContent  = revenue ? '₹' + revenue.toLocaleString('en-IN') : '₹0';
+  }
+
+  // ── FILTER ──
+  function setFilter(f) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + f)?.classList.add('active');
+    // tab-all
+    if (f === 'all') document.getElementById('tab-all').classList.add('active');
+    renderCards();
+  }
+
+  // ── RENDER CARDS ──
+  function renderCards() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    let apps = allApplications;
+
+    if (currentFilter !== 'all') apps = apps.filter(a => a.status === currentFilter);
+    if (search) apps = apps.filter(a =>
+      (a.name||'').toLowerCase().includes(search) ||
+      (a.city||'').toLowerCase().includes(search) ||
+      (a.phone||'').toLowerCase().includes(search)
+    );
+
+    // Sort: paid_pending first, then pending_review, then approved, then rejected; newest first within
+    const order = { paid_pending_approval:0, pending_review:1, approved:2, rejected:3 };
+    apps.sort((a,b) => {
+      const od = (order[a.status]||99) - (order[b.status]||99);
+      if (od !== 0) return od;
+      return new Date(b.timestamp||0) - new Date(a.timestamp||0);
+    });
+
+    if (!apps.length) {
+      document.getElementById('appList').innerHTML = `
+        <div class="empty-state">
+          <div class="emoji">🔍</div>
+          <h3>No applications found</h3>
+          <p>No entries match the current filter or search. Try changing the filter above.</p>
+        </div>`;
+      return;
+    }
+
+    document.getElementById('appList').innerHTML = apps.map((a, i) => buildCard(a, i)).join('');
+  }
+
+  function buildCard(a, i) {
+    const statusLabel = {
+      paid_pending_approval: '💰 Paid — Needs Approval',
+      pending_review:        '⏳ Pending Payment',
+      approved:              '✅ Approved & Live',
+      rejected:              '❌ Rejected',
+    }[a.status] || a.status;
+
+    const badgeClass = 'badge-' + a.status;
+    const services   = Array.isArray(a.services) ? a.services : (a.services||'').split(',').filter(Boolean);
+    const date       = a.timestamp ? new Date(a.timestamp).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+
+    const showApprove = a.status === 'paid_pending_approval' || a.status === 'pending_review';
+    const showReject  = a.status === 'paid_pending_approval' || a.status === 'pending_review' || a.status === 'approved';
+
+    return `
+    <div class="app-card status-${a.status}" id="card-${a.row}">
+      <div class="app-header">
+        <div class="app-identity">
+          <div class="app-avatar">${(a.name||'?').charAt(0).toUpperCase()}</div>
+          <div>
+            <div class="app-name">${esc(a.name)} <span style="font-size:0.85rem;font-weight:400;color:var(--soft);">${esc(a.age)}y · ${esc(a.gender)}</span></div>
+            <div class="app-meta">📍 ${esc(a.city)} &nbsp;·&nbsp; 📱 ${esc(a.phone)} &nbsp;·&nbsp; 🗣️ ${esc(a.languages)}</div>
+            ${a.razorpay_payment_id ? `<div style="font-size:0.75rem;color:var(--green);margin-top:3px;font-weight:600;">💳 Payment: ${esc(a.razorpay_payment_id)}</div>` : ''}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <span class="status-badge ${badgeClass}">${statusLabel}</span>
+          <span class="app-timestamp">${date}</span>
+        </div>
+      </div>
+
+      <div class="app-body">
+        <div class="app-field app-bio">
+          <div class="field-label">Bio</div>
+          <div class="field-val">${esc(a.bio)}</div>
+        </div>
+        <div class="app-field">
+          <div class="field-label">Hourly Rate</div>
+          <div class="field-val" style="font-weight:700;color:var(--warm);">₹${esc(a.rate)}/hr</div>
+        </div>
+        <div class="app-field">
+          <div class="field-label">Availability</div>
+          <div class="field-val">${esc(a.days)} · ${esc(a.timings)}</div>
+        </div>
+        ${a.traits ? `<div class="app-field"><div class="field-label">Personality Traits</div><div class="field-val">${esc(a.traits)}</div></div>` : ''}
+        ${a.social ? `<div class="app-field"><div class="field-label">Social / Instagram</div><div class="field-val"><a href="${esc(a.social)}" target="_blank" style="color:var(--warm);">${esc(a.social)}</a></div></div>` : ''}
+        ${a.note  ? `<div class="app-field"><div class="field-label">Note for Shobhit</div><div class="field-val" style="font-style:italic;">"${esc(a.note)}"</div></div>` : ''}
+        <div class="app-field" style="grid-column:1/-1;">
+          <div class="field-label">Services Offered</div>
+          <div class="app-services-list">${services.map(s=>`<span class="app-service-tag">${esc(s.trim())}</span>`).join('')}</div>
+        </div>
+      </div>
+
+      <div class="app-actions">
+        ${showApprove ? `<button class="btn-approve" onclick="updateStatus('${a.row}','approved','${esc(a.name)}','${esc(a.phone)}')">✅ Approve & Go Live</button>` : ''}
+        ${showReject  ? `<button class="btn-reject"  onclick="updateStatus('${a.row}','rejected','${esc(a.name)}','${esc(a.phone)}')">❌ Reject</button>` : ''}
+        ${a.status === 'rejected' ? `<button class="btn-approve" onclick="updateStatus('${a.row}','approved','${esc(a.name)}','${esc(a.phone)}')">↩️ Re-approve</button>` : ''}
+        <a class="btn-whatsapp-contact" href="https://wa.me/91${a.phone}?text=Hi%20${encodeURIComponent(a.name||'')}!%20This%20is%20Shobhit%20from%20hireshobhit.in%20%F0%9F%91%8B" target="_blank">💬 WhatsApp ${esc((a.name||'').split(' ')[0])}</a>
+      </div>
+    </div>`;
+  }
+
+  // ── UPDATE STATUS (approve / reject) ──
+  async function updateStatus(rowId, newStatus, name, phone) {
+    const action = newStatus === 'approved' ? 'Approve' : 'Reject';
+    if (!confirm(`${action} ${name}?`)) return;
+
+    showToast(`Updating ${name}…`);
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method:'POST', mode:'no-cors',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ action:'update_companion_status', row: rowId, status: newStatus })
+      });
+
+      // Optimistically update local data
+      const app = allApplications.find(a => String(a.row) === String(rowId));
+      if (app) app.status = newStatus;
+      updateStats(allApplications);
+      renderCards();
+
+      if (newStatus === 'approved') {
+        showToast(`✅ ${name} approved! Profile is now live.`, 'success');
+        // Open WhatsApp to notify them
+        setTimeout(() => {
+          const msg = `Hi ${name}! 🎉 Great news — your companion profile on hireshobhit.in has been APPROVED and is now live! Clients in your area can now find and book you. Welcome to the team! 🌟`;
+          window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }, 800);
+      } else {
+        showToast(`❌ ${name} rejected.`, 'error');
+        // Optionally notify
+        const notify = confirm(`Do you want to WhatsApp ${name} about the rejection?`);
+        if (notify) {
+          const msg = `Hi ${name}, thanks for applying to hireshobhit.in. Unfortunately, we're unable to approve your profile at this time. Feel free to reapply after 30 days or reach out if you have questions. — Shobhit`;
+          window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+      }
+    } catch(e) {
+      showToast('Update failed. Refresh and try again.', 'error');
+    }
+  }
+
+  // ── HELPERS ──
+  function esc(str) {
+    if (!str && str !== 0) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function showToast(msg, type='') {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.className = 'toast show ' + type;
+    setTimeout(() => t.className = 'toast', 3500);
+  }
+
+  // Auto-load on open if already logged in
+  if (sessionStorage.getItem('admin_auth') === '1') loadApplications();
+</script>
+</body>
+</html>
