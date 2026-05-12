@@ -53,7 +53,6 @@
 <meta name="description" content="Hire Shobhit as a platonic companion in Ghaziabad, Noida & Delhi NCR. Book a verified companion for weddings, events, outings & hospital visits. 100% platonic. Aadhaar verified. From ₹399/hr."/>
 <meta name="keywords" content="rent a companion Ghaziabad, hire a friend Noida, companion for hire Delhi, rent a boyfriend NCR, platonic companion Delhi weddings, hire a brother Ghaziabad, companion for events Noida, rent a friend Indirapuram, male companion Delhi, platonic friend for hire NCR, companion service Greater Noida, rent a partner Vaishali, hire companion Crossings Republik, friend for hire East Delhi"/>
 <link rel="canonical" href="https://hireshobhit.in"/>
-<meta name="copyright" content="© 2026 hireshobhit.in — All rights reserved. Unauthorized copying or reproduction of content is prohibited."/>
 <meta property="og:title" content="Rent a Companion in Ghaziabad, Noida & Delhi NCR | Shobhit"/>
 <meta property="og:description" content="Hire Shobhit — platonic companion for weddings, events & outings in Ghaziabad, Noida, Delhi NCR. ID verified. From ₹399/hr."/>
 <meta property="og:image" content="https://hireshobhit.in/shobhit.jpg"/>
@@ -64,6 +63,8 @@
 <meta name="twitter:title" content="Rent a Companion in Ghaziabad, Noida & Delhi | Shobhit"/>
 <meta name="twitter:description" content="Platonic companion for hire in Ghaziabad, Noida & Delhi NCR. Events, weddings, outings. ID verified. From ₹399/hr."/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- Razorpay Payment SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
   :root {
     --cream: #FFF8F0;
@@ -1139,20 +1140,6 @@
     .enquiry-grid { grid-template-columns: 1fr; }
     .enquiry-grid .full { grid-column: 1; }
   }
-
-  /* ── CONTENT PROTECTION ── */
-  body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  /* Allow selection only in form inputs */
-  input, textarea, select {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    user-select: text;
-  }
 </style>
 <!-- Structured Data: Local Business SEO -->
 <script type="application/ld+json">
@@ -1777,6 +1764,30 @@
         </div>
         <button class="form-submit" onclick="submitBooking()">✨ Confirm Booking via WhatsApp</button>
 
+        <!-- ── PAYMENT OPTIONS ── -->
+        <div style="margin:22px 0 8px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <div style="flex:1;height:1px;background:var(--blush);"></div>
+            <span style="font-size:0.8rem;color:var(--soft);font-weight:600;">pay before your session</span>
+            <div style="flex:1;height:1px;background:var(--blush);"></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid var(--blush);border-radius:20px;padding:24px;text-align:center;box-shadow:0 4px 20px rgba(61,43,31,0.07);">
+            <div style="font-size:1rem;font-weight:700;color:var(--brown);margin-bottom:4px;">💳 Scan & Pay via UPI</div>
+            <div style="font-size:0.82rem;color:var(--soft);margin-bottom:16px;">GPay · PhonePe · Paytm · Any UPI app</div>
+            <div style="display:inline-block;padding:12px;background:var(--cream);border-radius:16px;border:1.5px solid var(--blush);">
+              <div style="display:inline-block;"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 410 410" class="segno"><g transform="scale(10)"><path fill="#fff8f0" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#3d2b1f" d="M4 4.5h7m1 0h1m1 0h1m4 0h1m1 0h2m3 0h2m2 0h7m-33 1h1m5 0h1m9 0h1m1 0h4m4 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h1m1 0h4m2 0h4m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m3 0h1m2 0h3m6 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m2 0h3m3 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h3m3 0h2m1 0h1m1 0h1m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m1 0h1m2 0h5m1 0h2m2 0h1m-25 1h1m3 0h1m1 0h4m1 0h3m2 0h2m2 0h4m1 0h5m2 0h1m-33 1h1m7 0h1m4 0h3m1 0h2m2 0h1m1 0h3m1 0h1m2 0h2m-30 1h6m2 0h1m4 0h1m2 0h1m1 0h5m2 0h3m1 0h1m-32 1h2m1 0h3m1 0h1m2 0h3m1 0h4m1 0h1m1 0h3m3 0h2m2 0h2m-31 1h1m1 0h3m2 0h2m2 0h3m3 0h1m1 0h2m1 0h1m1 0h3m2 0h1m-32 1h2m1 0h2m4 0h1m2 0h1m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-31 1h2m1 0h1m2 0h1m1 0h2m1 0h3m2 0h1m3 0h4m3 0h1m3 0h1m-32 1h1m1 0h1m4 0h1m3 0h1m5 0h1m2 0h4m1 0h1m2 0h1m2 0h1m-30 1h6m4 0h2m1 0h3m1 0h1m1 0h4m1 0h4m2 0h1m-33 1h1m4 0h1m1 0h3m1 0h1m3 0h1m2 0h1m2 0h1m1 0h1m3 0h1m3 0h1m-31 1h1m2 0h1m1 0h1m3 0h1m2 0h3m4 0h4m1 0h2m4 0h1m-31 1h2m1 0h2m1 0h1m1 0h1m2 0h1m1 0h4m3 0h1m1 0h1m2 0h1m2 0h1m1 0h2m-33 1h4m1 0h3m1 0h3m1 0h1m2 0h1m1 0h2m1 0h2m1 0h3m1 0h2m-30 1h1m1 0h1m2 0h1m3 0h2m1 0h2m3 0h2m3 0h2m-22 1h1m3 0h1m1 0h2m5 0h1m1 0h1m2 0h5m1 0h1m2 0h1m1 0h1m-29 1h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m2 0h2m-33 1h2m1 0h1m2 0h1m4 0h1m4 0h2m1 0h4m1 0h5m3 0h1m-25 1h4m1 0h1m1 0h1m2 0h1m3 0h3m3 0h1m2 0h1m-32 1h7m1 0h1m1 0h1m1 0h6m2 0h2m2 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m3 0h1m1 0h2m1 0h1m1 0h1m2 0h3m1 0h1m3 0h2m-30 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m4 0h1m1 0h2m2 0h5m2 0h2m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h2m1 0h3m4 0h1m1 0h2m1 0h1m-29 1h1m1 0h3m1 0h1m4 0h1m4 0h2m4 0h1m1 0h5m-29 1h1m5 0h1m3 0h1m2 0h2m2 0h6m2 0h2m-27 1h7m1 0h1m1 0h2m1 0h1m1 0h3m1 0h6m1 0h4m2 0h1"/></g></svg></div>
+            </div>
+            <div style="margin-top:14px;">
+              <div style="font-size:0.78rem;color:var(--soft);margin-bottom:6px;">UPI ID</div>
+              <div onclick="copyUPI(this)" title="Click to copy" style="display:inline-block;background:var(--cream);border:1.5px dashed var(--gold);border-radius:10px;padding:8px 18px;font-size:0.88rem;font-weight:700;color:var(--brown);cursor:pointer;letter-spacing:0.5px;">sharmashobhit1997@okaxis</div>
+              <div style="font-size:0.73rem;color:var(--soft);margin-top:5px;">👆 Tap to copy</div>
+            </div>
+            <div style="margin-top:14px;padding:10px;background:#FFF3CD;border-radius:10px;font-size:0.78rem;color:#856404;font-weight:600;">
+              📸 After paying, share the screenshot on WhatsApp to confirm your booking!
+            </div>
+          </div>
+        </div>
+
         <div class="upi-box">
           <div class="upi-icon">💳</div>
           <div class="upi-info">
@@ -2142,38 +2153,6 @@
             <button class="blog-read-more">Read More →</button>
           </div>
         </div>
-
-        <div class="blog-card" onclick="openPost('post6')">
-          <div class="blog-thumb" style="background:linear-gradient(135deg,#FFD6BA,#FF7B54);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:3rem;min-height:160px;border-radius:20px 20px 0 0;">
-            💼
-            <div class="blog-thumb-label">Earn With Us</div>
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta">
-              <span class="blog-date">📅 April 20, 2026</span>
-              <span class="blog-read">⏱ 4 min read</span>
-            </div>
-            <h3>How to Earn ₹500–₹2000 Per Session as a Verified Companion in Delhi NCR</h3>
-            <p>Think being a companion is just "hanging out"? Here's the real earning potential, who it's for, and what makes a great companion on hireshobhit.in.</p>
-            <button class="blog-read-more">Read More →</button>
-          </div>
-        </div>
-
-        <div class="blog-card" onclick="openPost('post7')">
-          <div class="blog-thumb" style="background:linear-gradient(135deg,#E8D5FF,#9B59B6);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:3rem;min-height:160px;border-radius:20px 20px 0 0;">
-            🏙️
-            <div class="blog-thumb-label">City Life</div>
-          </div>
-          <div class="blog-body">
-            <div class="blog-meta">
-              <span class="blog-date">📅 May 5, 2026</span>
-              <span class="blog-read">⏱ 5 min read</span>
-            </div>
-            <h3>Why Ghaziabad & Noida Are India's Loneliest Boom Cities — And What Nobody Talks About</h3>
-            <p>Millions moved to NCR for jobs and opportunity. But in tower apartments and new sectors, many live without a single close friend nearby. Here's why, and what's changing.</p>
-            <button class="blog-read-more">Read More →</button>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -2356,85 +2335,7 @@
       </div>
     </div>
 
-    <!-- POST 6 -->
-    <div class="blog-post-view" id="post6">
-      <button class="blog-back" onclick="closePost()">← Back to Blog</button>
-      <div class="blog-post-header">
-        <div class="blog-thumb" style="height:260px;border-radius:24px;font-size:5rem;background:linear-gradient(135deg,#FFD6BA,#FF7B54);display:flex;flex-direction:column;align-items:center;justify-content:center;">💼</div>
-        <div class="blog-meta"><span class="blog-date">📅 April 20, 2026</span><span class="blog-read">⏱ 4 min read</span></div>
-        <h1>How to Earn ₹500–₹2000 Per Session as a Verified Companion in Delhi NCR</h1>
-      </div>
-      <div class="blog-post-content">
-        <p>When people hear "companion for hire," they usually think about the person booking. But there's a whole other side to this — the companion themselves. Who are they? What do they actually do? And is it worth it financially?</p>
-        <p>If you're based in Ghaziabad, Noida or Delhi and looking for a flexible way to earn on your own terms, here's an honest breakdown of what being a companion on hireshobhit.in actually looks like.</p>
-
-        <h2>What Does a Companion Actually Do?</h2>
-        <p>Nothing complicated. You accompany a client to a public place — a café, a mall, a wedding, a hospital, a park — and you're present. You talk, you listen, you make them feel comfortable and not alone. That's it. Everything is 100% platonic, conducted in public, and entirely on your terms.</p>
-        <p>Common sessions include: café meetups, shopping trips, attending family events as a plus-one, hospital waiting-room support, city walks, and movie outings. You set your own availability — no fixed hours, no boss.</p>
-
-        <h2>What's the Earning Potential?</h2>
-        <p>Companions on hireshobhit.in set their own hourly rate (minimum ₹200/hr). Most verified companions earn between ₹400–₹800/hr depending on experience and the type of session. A 2–3 hour session on a weekend afternoon can easily bring in ₹1,000–₹2,000.</p>
-        <div class="highlight-box">💰 Even 3–4 sessions a week at ₹500/hr = ₹6,000–₹8,000/month — part-time, on your schedule.</div>
-        <p>There's a one-time ₹399 registration fee to get your profile verified and listed. After that, you keep everything you earn. No commission, no cuts.</p>
-
-        <h2>Who Is This For?</h2>
-        <p>Companions tend to be confident, warm, conversational people who genuinely enjoy meeting new people. Many are students, young professionals, homemakers, or freelancers looking for flexible income. You don't need any special qualification — just a valid Aadhaar ID, a genuine personality, and a comfort with being in public social settings.</p>
-        <p>We especially welcome applications from women — there's high demand for female companions for hospital visits, family functions, and shopping trips.</p>
-
-        <h2>Is It Safe?</h2>
-        <p>Completely. All sessions are in public places — no home visits, ever. Clients are vetted before connecting with companions. You can decline any booking you're not comfortable with, no questions asked. Your personal details (last name, address, social media) are never shared with clients without your permission.</p>
-
-        <div class="highlight-box">🛡️ Your safety is the foundation. If anything feels off, you end the session — no penalty, no explanation needed.</div>
-
-        <h2>How to Apply</h2>
-        <p>Fill out the Join as Companion form on this site — it takes about 5 minutes. Once approved, your profile goes live and clients can request to book you. Shobhit personally reviews every application to keep quality high and the community safe.</p>
-
-        <div class="blog-cta-box">
-          <h3>Ready to Join?</h3>
-          <p>Applications are open now. Limited spots available in Ghaziabad, Noida & Delhi NCR.</p>
-          <a href="#join" onclick="switchTab('join');return false;">🌟 Apply as a Companion</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- POST 7 -->
-    <div class="blog-post-view" id="post7">
-      <button class="blog-back" onclick="closePost()">← Back to Blog</button>
-      <div class="blog-post-header">
-        <div class="blog-thumb" style="height:260px;border-radius:24px;font-size:5rem;background:linear-gradient(135deg,#E8D5FF,#9B59B6);display:flex;flex-direction:column;align-items:center;justify-content:center;">🏙️</div>
-        <div class="blog-meta"><span class="blog-date">📅 May 5, 2026</span><span class="blog-read">⏱ 5 min read</span></div>
-        <h1>Why Ghaziabad & Noida Are India's Loneliest Boom Cities — And What Nobody Talks About</h1>
-      </div>
-      <div class="blog-post-content">
-        <p>In the last 15 years, Ghaziabad and Noida have grown faster than almost any other urban cluster in India. New sectors, new towers, new malls — and hundreds of thousands of new residents who came from somewhere else, mostly alone.</p>
-        <p>And yet, if you scroll through the local Reddit or Facebook groups, you'll notice a quiet but persistent theme: <em>"Looking for friends in Noida," "Anyone in Indirapuram want to hang out," "New to Ghaziabad, feeling isolated."</em></p>
-        <p>Nobody talks about this publicly. But it's real, it's widespread, and it's getting worse.</p>
-
-        <h2>The Tower Trap</h2>
-        <p>Most NCR residents live in high-rise apartments where you can live next to someone for three years and never learn their name. Unlike old mohalla-style neighbourhoods — where community happened naturally in shared courtyards and chai stalls — modern housing colonies are designed for privacy, not connection.</p>
-        <p>You go to work, come back, order food on Swiggy, watch something on Netflix, sleep. Repeat. The structure of modern urban life in NCR actively discourages the kind of casual daily interaction that naturally builds friendships.</p>
-
-        <h2>The Migration Factor</h2>
-        <p>Most people in Noida and Ghaziabad are not originally from there. They came for jobs — IT parks in Sector 62, corporate offices along the expressway, startups in Knowledge Park. Their school friends are in Lucknow or Jaipur or Patna. Their college friends are scattered across Bangalore, Pune, and Hyderabad.</p>
-        <p>Making new, deep friendships as an adult — especially in a transient city where people come and go every 2–3 years — is genuinely hard. Studies consistently show that adult friendships require proximity, repeated unplanned interaction, and a setting where your guard is down. Modern NCR life provides almost none of these.</p>
-
-        <div class="highlight-box">📊 A 2023 survey found that over 60% of urban Indian millennials report feeling "moderately to severely lonely" — with NCR ranking among the highest. The numbers are worse among people who've relocated for work.</div>
-
-        <h2>The Stigma That Keeps People Silent</h2>
-        <p>Loneliness carries shame in India in a way it doesn't in some other cultures. Admitting you have no one to go to a movie with, or that you'd like company at a hospital appointment, feels like admitting failure. So people stay quiet. They go alone. Or they don't go at all.</p>
-        <p>That silence is what hireshobhit.in is trying to break — not by replacing real friendships, but by being honest that sometimes you just need someone to show up. And that asking for that isn't weakness. It's self-awareness.</p>
-
-        <h2>What's Actually Changing</h2>
-        <p>The conversation is slowly shifting. Apps like Bumble BFF, communities built around shared interests, co-working spaces — these are all responses to the same problem. The "rent a friend" model, legal and openly operating in the US, Japan, UK and now India, is simply the most direct response: you need company, here's a verified, safe, judgment-free way to get it.</p>
-        <p>As NCR continues to grow, the loneliness problem won't fix itself. But the tools to deal with it honestly — without shame, without pretending it doesn't exist — are finally starting to appear.</p>
-
-        <div class="blog-cta-box">
-          <h3>You don't have to go alone.</h3>
-          <p>hireshobhit.in is Ghaziabad's first verified platonic companion service. From ₹399/hr.</p>
-          <a href="https://wa.me/917888452012?text=Hi! I read the blog and want to know more" target="_blank">💬 Chat on WhatsApp</a>
-        </div>
-      </div>
-    </div>
+  </div>
   <footer>
     <p>Made with <span>♥</span> by Shobhit · Rent a Partner · Ghaziabad, UP · © 2026</p>
   </footer>
@@ -2785,34 +2686,27 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ── LOAD CORRECT TAB/POST FROM URL HASH ──
-  function navigateToHash(hash) {
-    hash = (hash || '').replace('#', '').toLowerCase();
-    // Handle blog post hashes e.g. #blog-post1
-    if (hash.startsWith('blog-')) {
-      const postId = hash.replace('blog-', '');
-      switchTab('blog');
-      if (VALID_POSTS && VALID_POSTS.includes(postId)) {
-        setTimeout(() => {
-          document.getElementById('blog-listing').classList.add('hidden');
-          document.querySelectorAll('.blog-post-view').forEach(p => p.classList.remove('active'));
-          document.getElementById(postId).classList.add('active');
-        }, 50);
-      }
-      return;
-    }
-    // Normal tab hashes
-    const tab = (hash && VALID_TABS.includes(hash)) ? hash : 'home';
-    switchTab(tab);
-  }
-
+  // ── LOAD CORRECT TAB FROM URL HASH ──
   (function() {
-    navigateToHash(window.location.hash);
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash && VALID_TABS.includes(hash)) {
+      switchTab(hash);
+    }
   })();
 
   // Handle browser back/forward
   window.addEventListener('popstate', function() {
-    navigateToHash(window.location.hash);
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    const tab = (hash && VALID_TABS.includes(hash)) ? hash : 'home';
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mobile-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + tab).classList.add('active');
+    const tabMap = { home: 0, services: 1, book: 2, reviews: 3, blog: 4, join: 5 };
+    const idx = tabMap[tab];
+    document.querySelectorAll('.tab-btn')[idx]?.classList.add('active');
+    document.querySelectorAll('.mobile-tab-btn')[idx]?.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // ── MOBILE MENU ──
@@ -2856,6 +2750,68 @@
       const orig = el.textContent; el.textContent = '✅ Copied!';
       setTimeout(() => el.textContent = orig, 2000);
     });
+  }
+
+  // ── RAZORPAY BOOKING PAYMENT ──
+  function openRazorpayBooking() {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const service = document.getElementById('f-service').value;
+    const hours   = document.getElementById('f-hours').value;
+    const date    = document.getElementById('f-date').value;
+    const time    = document.getElementById('f-time').value;
+    const notes   = document.getElementById('f-notes').value.trim();
+
+    if (!name || !phone || !date || !time) {
+      alert('Please fill in your Name, Phone, Date and Time first! 😊');
+      return;
+    }
+
+    // Price map (in paise)
+    const priceMap = {
+      '1 Hour': 39900,
+      '2 Hours': 79900,
+      '3 Hours': 119900,
+      'Half Day (4 hrs)': 159900,
+      'Full Day (8 hrs)': 319900
+    };
+    let amount = priceMap[hours] || 39900;
+    if (appliedDiscount) amount = Math.max(0, amount - (appliedDiscount * 100));
+
+    if (RAZORPAY_KEY === 'YOUR_RAZORPAY_KEY_ID_HERE') {
+      alert('💡 Razorpay key not set yet.\n\nPlease add your Razorpay Key ID in the website code, or use the WhatsApp booking option above.');
+      return;
+    }
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: amount,
+      currency: 'INR',
+      name: 'hireshobhit.in',
+      description: `${service} — ${hours}`,
+      image: 'https://hireshobhit.in/shobhit.jpg',
+      prefill: { name, contact: phone },
+      notes: { service, hours, date, time, notes: notes || 'None' },
+      theme: { color: '#FF7B54' },
+      handler: function(response) {
+        const pid = response.razorpay_payment_id;
+        const msg = `Hi Shobhit! 👋 I've paid online for my booking.%0A%0A💳 Payment ID: ${pid}%0A👤 Name: ${encodeURIComponent(name)}%0A📞 Phone: ${encodeURIComponent(phone)}%0A🎭 Service: ${encodeURIComponent(service)}%0A⏱️ Duration: ${encodeURIComponent(hours)}%0A📅 Date: ${encodeURIComponent(date)}%0A🕐 Time: ${encodeURIComponent(time)}${appliedDiscount ? `%0A🎁 Coupon: ${appliedCode}` : ''}%0A📝 Notes: ${encodeURIComponent(notes || 'None')}%0A%0APlease confirm! 🙏`;
+        window.open(`https://wa.me/917888452012?text=${msg}`, '_blank');
+        showModal();
+      },
+      modal: {
+        ondismiss: function() {
+          alert('Payment cancelled. You can retry or use the WhatsApp booking option.');
+        }
+      }
+    };
+
+    try {
+      const rzp = new Razorpay(options);
+      rzp.open();
+    } catch(e) {
+      alert('Payment could not open. Please use the WhatsApp booking option instead.');
+    }
   }
 
   // ── BOOKING ──
@@ -2923,20 +2879,15 @@
   }
 
   // ── BLOG ──
-  const VALID_POSTS = ['post1','post2','post3','post4','post5','post6','post7'];
-
   function openPost(id) {
-    if (!VALID_POSTS.includes(id)) return;
     document.getElementById('blog-listing').classList.add('hidden');
     document.querySelectorAll('.blog-post-view').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    history.pushState(null, '', '#blog-' + id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function closePost() {
     document.querySelectorAll('.blog-post-view').forEach(p => p.classList.remove('active'));
     document.getElementById('blog-listing').classList.remove('hidden');
-    history.pushState(null, '', '#blog');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -3086,6 +3037,10 @@
   // ⚠️ STEP REQUIRED: Paste your Google Apps Script Web App URL below after deploying
   const COMPANION_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyr2KjtTPDCPDziOvfwGG080YxBWXebnMDCo_CRwGECZaw7X2JA86IQr7q_kfJ7IFWT/exec';
 
+  // ── RAZORPAY KEY ──
+  // ⚠️ STEP REQUIRED: Paste your Razorpay Key ID below (starts with rzp_live_ or rzp_test_)
+  const RAZORPAY_KEY = 'YOUR_RAZORPAY_KEY_ID_HERE';
+
   // Stores validated form data while waiting for payment
   let pendingApplication = null;
 
@@ -3126,16 +3081,59 @@
     if (!timings)                  { msgEl.textContent = '🕐 Please select your preferred timings.'; msgEl.className = 'join-msg error'; return; }
     if (!agree1 || !agree2 || !agree3) { msgEl.textContent = '☑️ Please agree to all three terms before submitting.'; msgEl.className = 'join-msg error'; return; }
 
-    // Save and submit via WhatsApp
-    pendingApplication = { name, age, phone, gender, city, languages, bio, traits, rate, days, timings, social, note, services, timestamp: new Date().toISOString() };
+    // Save validated data
+    pendingApplication = { name, age, phone, gender, city, languages, bio, traits, rate, days, timings, social, note, services, timestamp: new Date().toISOString(), status: 'pending_payment' };
 
-    // Open WhatsApp immediately (must be synchronous to avoid popup block)
-    sendApplicationWhatsApp(pendingApplication);
-    btn.disabled = true; btn.textContent = 'Sending…';
-    msgEl.innerHTML = '🎉 Application submitted! WhatsApp is opening now — Shobhit will review and confirm your profile within 24 hours. 🙏';
-    msgEl.className = 'join-msg success';
-    saveApplicationToSheet(pendingApplication, 'pending_review');
-    setTimeout(() => { btn.textContent = '🌟 Submit My Application'; btn.disabled = false; }, 3000);
+    // Open Razorpay payment
+    if (RAZORPAY_KEY === 'YOUR_RAZORPAY_KEY_ID_HERE') {
+      // No key yet — fall back to WhatsApp flow
+      btn.disabled = true; btn.textContent = 'Sending…';
+      await saveApplicationToSheet(pendingApplication, 'pending_review');
+      sendApplicationWhatsApp(pendingApplication);
+      msgEl.innerHTML = '🎉 Application received! Shobhit will WhatsApp you with a payment link within a few hours. Your profile goes live after ₹399 payment + manual approval. 🙏';
+      msgEl.className = 'join-msg success';
+      btn.textContent = '🌟 Submit My Application — ₹399 Registration';
+      btn.disabled = false;
+      return;
+    }
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: 39900, // ₹399 in paise
+      currency: 'INR',
+      name: 'hireshobhit.in',
+      description: 'Companion Registration Fee',
+      image: 'https://hireshobhit.in/shobhit.jpg',
+      prefill: { name, contact: phone },
+      notes: { applicant_name: name, applicant_phone: phone, applicant_city: city },
+      theme: { color: '#FF7B54' },
+      handler: async function(response) {
+        // Payment successful
+        btn.disabled = true; btn.textContent = 'Saving your application…';
+        pendingApplication.razorpay_payment_id = response.razorpay_payment_id;
+        pendingApplication.status = 'paid_pending_approval';
+        await saveApplicationToSheet(pendingApplication, 'paid_pending_approval');
+        sendApplicationWhatsApp(pendingApplication, response.razorpay_payment_id);
+        msgEl.innerHTML = `✅ Payment of ₹399 received! (ID: ${response.razorpay_payment_id})<br><br>🎉 Your application has been saved. Shobhit will review and approve your profile within 24 hours. You'll get a WhatsApp notification when you go live!`;
+        msgEl.className = 'join-msg success';
+        btn.textContent = '🌟 Submit My Application — ₹399 Registration';
+        btn.disabled = false;
+      },
+      modal: {
+        ondismiss: function() {
+          msgEl.textContent = '⚠️ Payment was cancelled. Your details are saved — click submit again to retry payment.';
+          msgEl.className = 'join-msg error';
+        }
+      }
+    };
+
+    try {
+      const rzp = new Razorpay(options);
+      rzp.open();
+    } catch(e) {
+      msgEl.textContent = '❌ Payment could not open. Please make sure your Razorpay key is correctly set, or use the WhatsApp button below to contact Shobhit directly.';
+      msgEl.className = 'join-msg error';
+    }
   }
 
   async function saveApplicationToSheet(data, status) {
@@ -3225,28 +3223,6 @@
       btn.textContent = '📩 Send Enquiry via WhatsApp';
     }, 3000);
   }
-
-
-  // ── CONTENT PROTECTION ──
-  // Disable right-click
-  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-
-  // Disable copy / cut
-  document.addEventListener('copy', function(e) { e.preventDefault(); });
-  document.addEventListener('cut', function(e) { e.preventDefault(); });
-
-  // Disable keyboard shortcuts: Ctrl+U, Ctrl+S, Ctrl+A, F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-  document.addEventListener('keydown', function(e) {
-    const blocked = (
-      (e.ctrlKey && ['u','s','a','p'].includes(e.key.toLowerCase())) ||
-      (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase())) ||
-      e.key === 'F12'
-    );
-    if (blocked) e.preventDefault();
-  });
-
-  // Disable drag of images/text
-  document.addEventListener('dragstart', function(e) { e.preventDefault(); });
 </script>
 
 <!-- FLOATING WHATSAPP BUTTON -->
